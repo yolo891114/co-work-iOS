@@ -25,9 +25,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setLikeButton() {
-    likeButton: S
-    }
+    
 
     func layoutCell(image: String, title: String, price: Int) {
         productImg.loadImage(image, placeHolder: .asset(.Image_Placeholder))
