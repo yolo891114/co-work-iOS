@@ -123,6 +123,8 @@
 		3CED80AE23012CE400B7DA8E /* NSLocalizedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED80AD23012CE400B7DA8E /* NSLocalizedString+Extension.swift */; };
 		3CED80AF2301301300B7DA8E /* Trolley.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CED80B12301301300B7DA8E /* Trolley.storyboard */; };
 		3CFAC67322EEF71C00785FAB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFAC67222EEF71C00785FAB /* String+Extension.swift */; };
+		543F6BFE2AA1EDF900F6A3AE /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F6BFD2AA1EDF900F6A3AE /* BannerView.swift */; };
+		543F6C002AA32AD000F6A3AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F6BFF2AA32AD000F6A3AE /* UIViewController+Extension.swift */; };
 		58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */; };
 		D306B883B370DFD3ED8ACD74 /* Pods_STYLiSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C2B4AF3EF2ABFF2BB9F7AB /* Pods_STYLiSH.framework */; };
 /* End PBXBuildFile section */
@@ -258,6 +260,8 @@
 		3CED80B52301301800B7DA8E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Trolley.strings"; sourceTree = "<group>"; };
 		3CFAC67222EEF71C00785FAB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		42C2B4AF3EF2ABFF2BB9F7AB /* Pods_STYLiSH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STYLiSH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		543F6BFD2AA1EDF900F6A3AE /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		543F6BFF2AA32AD000F6A3AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LSColor+Extension.swift"; sourceTree = "<group>"; };
 		E921004E251C9FC3CBC174F5 /* Pods-STYLiSH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.release.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.release.xcconfig"; sourceTree = "<group>"; };
 		F551E8F447D7C8DC42B53B98 /* Pods-STYLiSH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.debug.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.debug.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				3CB80E77222FCCC20095F18C /* Bundle+Extension.swift */,
 				3CFAC67222EEF71C00785FAB /* String+Extension.swift */,
 				58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */,
+				543F6BFF2AA32AD000F6A3AE /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				3C6020E7222BBA3C00312958 /* ProductBasicCell.swift */,
 				3CCB3BC5222AAC8300976A1C /* LKGalleryView.swift */,
 				3C6B8FE6222CE53100804EFE /* BasicSelectionCell.swift */,
+				543F6BFD2AA1EDF900F6A3AE /* BannerView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -953,8 +959,10 @@
 				3C8F191922E5997B00EECE90 /* LobbyTableViewHeaderView.swift in Sources */,
 				3CE7A517223061A9009FF003 /* UserRequest.swift in Sources */,
 				3C09F52122115AB700C5B3E2 /* UIImage+Extension.swift in Sources */,
+				543F6BFE2AA1EDF900F6A3AE /* BannerView.swift in Sources */,
 				3C6B8FE8222CE53100804EFE /* BasicSelectionCell.swift in Sources */,
 				3C41B8472216667000112F94 /* ProductViewController.swift in Sources */,
+				543F6C002AA32AD000F6A3AE /* UIViewController+Extension.swift in Sources */,
 				3CE7A51322305916009FF003 /* UserProvider.swift in Sources */,
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
