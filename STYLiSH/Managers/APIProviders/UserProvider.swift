@@ -23,7 +23,7 @@ enum STYLiSHSignInError: Error {
 class UserProvider {
 
     func signInToSTYLiSH(fbToken: String, completion: @escaping (Result<Void>) -> Void) {
-        HTTPClient.shared.request(STUserRequest.signin(fbToken), completion: { result in
+        HTTPClient.shared.coWorkRequest(STUserRequest.signin(fbToken), completion: { result in
             switch result {
             case .success(let data):
                 do {
@@ -75,7 +75,7 @@ class UserProvider {
             token: token,
             body: try? JSONEncoder().encode(body)
         )
-        HTTPClient.shared.request(request, completion: { result in
+        HTTPClient.shared.coWorkRequest(request, completion: { result in
             switch result {
             case .success(let data):
                 do {
@@ -97,7 +97,7 @@ class UserProvider {
             return completion(Result.failure(STYLiSHSignInError.noToken))
         }
         let request = STUserRequest.profile(token: token)
-        HTTPClient.shared.request(request, completion: { result in
+        HTTPClient.shared.coWorkRequest(request, completion: { result in
             switch result {
             case .success(let data):
                 do {

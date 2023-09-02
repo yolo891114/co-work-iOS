@@ -67,6 +67,8 @@
 		<false/>
 	</dict>
 	<key>STBaseURL</key>
+	<string>http://54.66.20.75:8080/api/1.0</string>
+	<key>CoWorkBaseURL</key>
 	<string>https://api.appworks-school.tw/api/1.0</string>
 	<key>STTapPayAppID</key>
 	<integer>12348</integer>
