@@ -9,6 +9,36 @@
 import UIKit
 
 class ProductDetailViewController: STBaseViewController {
+    
+    
+    private let likeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        button.tintColor = .systemPink
+//        button.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        button.addTarget(self, action: #selector(tappedLike), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30))
+                button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
+        return button
+    }()
+    
+    func setLayout() {
+
+        NSLayoutConstraint.activate([
+            likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            likeButton.bottomAnchor.constraint(equalTo: galleryView.bottomAnchor, constant: -10),
+            likeButton.widthAnchor.constraint(equalToConstant: 50),
+            likeButton.heightAnchor.constraint(equalToConstant: 50)
+
+        ])
+        
+    }
+    
+    @objc func tappedLike() {
+        likeButton.isSelected.toggle()
+    }
 
     private struct Segue {
         static let picker = "SeguePicker"
@@ -64,6 +94,8 @@ class ProductDetailViewController: STBaseViewController {
 
         guard let product = product else { return }
         galleryView.datas = product.images
+        view.addSubview(likeButton)
+        setLayout()
     }
 
     private func setupTableView() {

@@ -16,28 +16,18 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var productPriceLbl: UILabel!
 
-//    @IBOutlet weak var likeButton: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
     
-//    func setLikeButton() {
-//        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-//        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-//        likeButton.tintColor = .systemPink
-//    }
 
     func layoutCell(image: String, title: String, price: Int) {
         productImg.loadImage(image, placeHolder: .asset(.Image_Placeholder))
         productTitleLbl.text = title
         productPriceLbl.text = String(price)
     }
-    
-    
-    @IBAction func likeButtonAction(_ sender: Any) {
-    }
+
 }
