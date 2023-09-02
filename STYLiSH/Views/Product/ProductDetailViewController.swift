@@ -38,6 +38,11 @@ class ProductDetailViewController: STBaseViewController {
     
     @objc func tappedLike() {
         likeButton.isSelected.toggle()
+        // 傳送 tracking API 給 data
+        // 加入商品儲存到本地
+        guard let product = product else { return }
+        print(product)
+        
     }
 
     private struct Segue {

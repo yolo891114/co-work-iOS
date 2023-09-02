@@ -84,6 +84,16 @@ extension ProfileViewController: UICollectionViewDataSource {
         profileCell.layoutCell(image: item.image, text: item.title)
         return profileCell
     }
+    
+    // 在 profile 頁面按下星星圖案可以切到收藏清單
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 1, indexPath.row == 0 {
+    let storyboard = UIStoryboard(name: "LikeList", bundle: nil)
+            if let likeVC = storyboard.instantiateViewController(identifier: "LikeListViewController") as? LikeListViewController {
+                navigationController?.pushViewController(likeVC, animated: true)
+            }
+        }
+    }
 
     func collectionView(
         _ collectionView: UICollectionView,
