@@ -30,7 +30,7 @@ class LobbyViewController: STBaseViewController {
         super.viewDidLoad()
         
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
-        
+
         lobbyView.beginHeaderRefresh()
         
         if UserDefaults.standard.string(forKey: "userGroup") == "A" {
