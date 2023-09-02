@@ -61,6 +61,13 @@ class ProductViewController: UIViewController {
         isListLayout = false
         
         navigationItem.rightBarButtonItem = nil
+        
+        if UserDefaults.standard.string(forKey: "userGroup") == "A" {
+            addBannerView()
+            print("A")
+        } else {
+            print("B")
+        }
     }
 
     // MARK: - Action

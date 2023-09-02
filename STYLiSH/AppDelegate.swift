@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         print("---------\(UserDefaults.standard.string(forKey: "userGroup"))")
-        if UserDefaults.standard.string(forKey: "userGroup") == nil {
+        if UserDefaults.standard.string(forKey: "userGroup") == "nil" {
             let group = ["A", "B"]
             let randomGroup = group.randomElement()
             

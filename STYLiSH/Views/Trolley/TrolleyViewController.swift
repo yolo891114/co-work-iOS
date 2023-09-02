@@ -49,6 +49,13 @@ class TrolleyViewController: STBaseViewController {
         tableView.lk_registerCellWithNib(identifier: String(describing: TrolleyTableViewCell.self), bundle: nil)
 
         fetchData()
+        if UserDefaults.standard.string(forKey: "userGroup") == "A" {
+            addBannerView()
+            print("A")
+        } else {
+            print("B")
+            addBannerView()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
