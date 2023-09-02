@@ -29,7 +29,6 @@ class LobbyViewController: STBaseViewController {
         super.viewDidLoad()
 
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
-        ABTesting == "A"
         lobbyView.beginHeaderRefresh()
     }
 
