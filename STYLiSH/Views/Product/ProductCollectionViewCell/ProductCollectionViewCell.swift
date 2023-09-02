@@ -34,6 +34,4 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     
-    @IBAction func likeButtonAction(_ sender: Any) {
-    }
 }
