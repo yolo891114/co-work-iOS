@@ -23,6 +23,7 @@ enum ProductContentCategory: String {
         case .description: return String(describing: ProductDescriptionTableViewCell.self)
         case .color: return ProductDetailCell.color
         case .size, .stock, .texture, .washing, .placeOfProduction, .remarks: return ProductDetailCell.label
+            
         }
     }
 
