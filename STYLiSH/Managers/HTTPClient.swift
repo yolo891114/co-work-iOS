@@ -52,6 +52,15 @@ extension STRequest {
         request.httpMethod = method
         return request
     }
+    func makeCoWorkRequest() -> URLRequest {
+        let urlString = Bundle.STValueForString(key: STConstant.coWorkKey) + endPoint
+        let url = URL(string: urlString)!
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = headers
+        request.httpBody = body
+        request.httpMethod = method
+        return request
+    }
 }
 
 class HTTPClient {
@@ -69,6 +78,34 @@ class HTTPClient {
     ) {
         URLSession.shared.dataTask(
             with: stRequest.makeRequest(),
+            completionHandler: { (data, response, error) in
+                if let error = error {
+                    return completion(Result.failure(error))
+                }
+
+                // swiftlint:disable force_cast
+                let httpResponse = response as! HTTPURLResponse
+                // swiftlint:enable force_cast
+                let statusCode = httpResponse.statusCode
+                switch statusCode {
+                case 200..<300:
+                    completion(Result.success(data!))
+                case 400..<500:
+                    completion(Result.failure(STHTTPClientError.clientError(data!)))
+                case 500..<600:
+                    completion(Result.failure(STHTTPClientError.serverError))
+                default:
+                    completion(Result.failure(STHTTPClientError.unexpectedError))
+                }
+            }).resume()
+    }
+    
+    func coWorkRequest(
+        _ stRequest: STRequest,
+        completion: @escaping (Result<Data>) -> Void
+    ) {
+        URLSession.shared.dataTask(
+            with: stRequest.makeCoWorkRequest(),
             completionHandler: { (data, response, error) in
                 if let error = error {
                     return completion(Result.failure(error))
