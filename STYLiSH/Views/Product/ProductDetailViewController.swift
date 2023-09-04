@@ -14,6 +14,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // fetch new product api
         postData?.review = message
         reviewsArray.append(message)
+        print(postData)
     }
     
     func postReviewApi() {
