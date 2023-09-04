@@ -134,6 +134,7 @@
 		6A49ADD82AA46410003256E9 /* MessageTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADD72AA46410003256E9 /* MessageTextFieldTableViewCell.swift */; };
 		6A49ADDC2AA46463003256E9 /* MessageTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A49ADDB2AA46463003256E9 /* MessageTextFieldTableViewCell.xib */; };
 		6A49ADE02AA48FE8003256E9 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADDF2AA48FE8003256E9 /* Review.swift */; };
+		6A49ADE22AA5720A003256E9 /* SingletonVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADE12AA5720A003256E9 /* SingletonVar.swift */; };
 		D306B883B370DFD3ED8ACD74 /* Pods_STYLiSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C2B4AF3EF2ABFF2BB9F7AB /* Pods_STYLiSH.framework */; };
 /* End PBXBuildFile section */
 
@@ -279,6 +280,7 @@
 		6A49ADD72AA46410003256E9 /* MessageTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		6A49ADDB2AA46463003256E9 /* MessageTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		6A49ADDF2AA48FE8003256E9 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		6A49ADE12AA5720A003256E9 /* SingletonVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonVar.swift; sourceTree = "<group>"; };
 		E921004E251C9FC3CBC174F5 /* Pods-STYLiSH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.release.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.release.xcconfig"; sourceTree = "<group>"; };
 		F551E8F447D7C8DC42B53B98 /* Pods-STYLiSH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.debug.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -767,6 +769,7 @@
 			isa = PBXGroup;
 			children = (
 				6A49ADDF2AA48FE8003256E9 /* Review.swift */,
+				6A49ADE12AA5720A003256E9 /* SingletonVar.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				3C33691F2227DC7B008A5A7A /* TrolleySelectionView.swift in Sources */,
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
+				6A49ADE22AA5720A003256E9 /* SingletonVar.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
 				3C990F6C22E5C78200F2FCEA /* ProductDetailView.swift in Sources */,
 				3C546BE722EAC79D0082C655 /* STOrderHeaderView.swift in Sources */,

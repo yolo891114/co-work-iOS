@@ -19,13 +19,18 @@ class MessageTextFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var messageTextfield: UITextField!
     
-    @IBOutlet weak var sendButtonOutlet: UIButton!
-    
+    @IBOutlet weak var sendButtonOutlet: UIButton! {
+        didSet{
+            sendButtonOutlet.lkCornerRadius = 20
+            sendButtonOutlet.clipsToBounds = true
+        }
+    }
     weak var delegate: MessageDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

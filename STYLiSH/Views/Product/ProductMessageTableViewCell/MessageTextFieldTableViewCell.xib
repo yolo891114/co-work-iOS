@@ -33,14 +33,11 @@
                         <rect key="frame" x="271" y="102.33333333333333" width="46" height="41.333333333333329"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="arrow.up.square.fill" catalog="system">
+                        <state key="normal" image="arrow.up.circle.fill" catalog="system">
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="sendButton:" destination="f5u-d1-McL" eventType="touchUpInside" id="jNu-tG-Bwo"/>
@@ -84,6 +81,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.up.square.fill" catalog="system" width="128" height="114"/>
+        <image name="arrow.up.circle.fill" catalog="system" width="128" height="123"/>
     </resources>
 </document>

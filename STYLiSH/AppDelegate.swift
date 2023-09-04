@@ -13,6 +13,8 @@ import FBSDKCoreKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var uuid = ""
+    
     // swiftlint:disable force_cast
     static let shared = UIApplication.shared.delegate as! AppDelegate
     // swiftlint:enable force_cast
@@ -30,8 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        print("---------\(UserDefaults.standard.string(forKey: "userGroup"))")
-        if UserDefaults.standard.string(forKey: "userGroup") == "nil" {
+        
+        
+        if let uuid = UserDefaults.standard.string(forKey: "uuid") {
+
+            self.uuid = uuid
+            print(uuid)
+        } else {
+            self.uuid = UUID().uuidString
+            
+            UserDefaults.standard.setValue(self.uuid, forKey: "uuid")
+            print(self.uuid)
+        }
+        
+        print("---------\(UserDefaults.standard.string(forKey: "uuid"))")
+        
+        if UserDefaults.standard.string(forKey: "userGroup") == "" {
             let group = ["A", "B"]
             let randomGroup = group.randomElement()
             
