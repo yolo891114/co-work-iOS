@@ -37,8 +37,34 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         }
     }
     
+    // 慾望清單API（收藏）
+    func postCollectionApi() {
+        
+        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking") {
+            var request = URLRequest(url: url)
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            
+            request.httpBody = try? JSONEncoder().encode(postCollecitonData)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                if let data = data,
+                   let content = String(data: data, encoding: .utf8) {
+                    print(content)
+                }
+                if let error = error {
+                    print("Error when post collection API:\(error)")
+                }
+            }
+        }
+    }
+    
 // MARK: - 公用變數
     var postData: Review?
+    var postCollecitonData: UserCollect?
 
     var mockDataToMessage = ["1","2"] {
         didSet {
@@ -83,6 +109,9 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // 加入商品儲存到本地
         guard let product = product else { return }
         
+        let eventDetail = EventDetailForCollect(action: "add", collectItem: product.id)
+        postCollecitonData = UserCollect(userID: SingletonVar.uuid, eventDetail: eventDetail, timestamp: <#T##String#>, version: SingletonVar.group)
+        
         
         var favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
             
@@ -95,6 +124,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             
             if likeButton.isSelected {
                 favoriteProducts.append(newFavorite)
+                
             } else {
                 favoriteProducts = favoriteProducts.filter { $0["productID"] as? Int != product.id }
             }
