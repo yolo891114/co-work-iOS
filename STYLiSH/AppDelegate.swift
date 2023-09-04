@@ -76,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userLogin = UserLogin(userID: uuid, eventType: "login", timestamp: SingletonVar.timeStamp, version: userGroup)
         
-        print(userLogin)
         if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking"){
             var request = URLRequest(url: url)
             // httpMethod 設定
@@ -87,15 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             //  URLSession 本身還是必須執行，為主要上傳功能。
             URLSession.shared.dataTask(with: request) { data, response, error in
-                if let response = response {
-                    print("===========",response) }
-                if let data = data,
-                   let content = String(data: data, encoding: .utf8) {
-                    print(content)
-                }
-                if let error = error {
-                    print("Error when post collection API:\(error)")
-                }
+
             }.resume()
 
         }

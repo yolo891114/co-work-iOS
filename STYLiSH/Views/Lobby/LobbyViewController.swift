@@ -125,3 +125,8 @@ extension LobbyViewController: LobbyViewDelegate {
         show(detailVC, sender: nil)
     }
 }
+
+
+extension LobbyViewController {
+    
+}
