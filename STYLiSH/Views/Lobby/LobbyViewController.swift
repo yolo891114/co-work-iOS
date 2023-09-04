@@ -42,6 +42,10 @@ class LobbyViewController: STBaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        fetchData()
+    }
+    
     // MARK: - Action
     private func fetchData() {
         marketProvider.fetchHots(completion: { [weak self] result in
