@@ -44,6 +44,7 @@ class MessageTextFieldTableViewCell: UITableViewCell {
             if message != "" {
                 delegate?.sendMessage(message: message)
                 delegate?.postReviewApi()
+                
             }
         }
     }

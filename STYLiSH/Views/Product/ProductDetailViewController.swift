@@ -11,7 +11,9 @@ import UIKit
 class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
     func sendMessage(message: String) {
-        mockDataToMessage.append(message)
+        // fetch new product api
+        postData?.review = message
+        reviewsArray.append(message)
     }
     
     func postReviewApi() {
@@ -28,14 +30,16 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             //  URLSession 本身還是必須執行，為主要上傳功能。
             URLSession.shared.dataTask(with: request) { data, response, error in
 // 內容單純拿來檢查矩陣內容，與上傳並無關係
-                    if let data = data,
-                           let content = String(data: data, encoding: .utf8) {
-                            print(content)
-                        }
+//                    if let data = data,
+//                           let content = String(data: data, encoding: .utf8) {
+//                            print(content)
+//                        }
+
             }.resume()
-            
+
         }
     }
+
     
     // 慾望清單API（收藏）
     func postCollectionApi() {
@@ -64,9 +68,10 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
 // MARK: - 公用變數
     var postData: Review?
+  
     var postCollecitonData: UserCollect?
 
-    var mockDataToMessage = ["1","2"] {
+    var reviewsArray: [String] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -181,11 +186,13 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
-////===== angus
-//            if let postData = postData {
-//            }
+ // ===== angus
+            
+            tableView.reloadData()
         }
     }
+    
+
     
     private var pickerViewController: ProductPickerController?
     
@@ -214,8 +221,10 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             }
 
         if let group = UserDefaults.standard.string(forKey: "userGroup") {
-            postData = Review(userID: "問書瑜", productID: product.id, review: "", timestamp: "", version: group)
+            postData = Review(userID: "\(SingletonVar.uuid)", productID: product.id, version: "\(SingletonVar.group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
         }
+        
+        reviewsArray = product.reviews
 
     }
     
@@ -333,7 +342,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             return 1
         } else {
             guard product != nil else { return 0 }
-            return product?.reviews.count ?? 0
+            return reviewsArray.count
         }
     }
     
@@ -353,7 +362,8 @@ extension ProductDetailViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductMessageTableViewCell", for: indexPath) as? ProductMessageTableViewCell else { return UITableViewCell() }
             
-            cell.messgeLabel.text = product?.reviews[indexPath.row]
+            cell.messgeLabel.text = reviewsArray[indexPath.row]
+            
             return cell
         }
     }
