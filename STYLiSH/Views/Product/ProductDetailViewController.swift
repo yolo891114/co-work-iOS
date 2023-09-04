@@ -14,10 +14,11 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // fetch new product api
         postData?.review = message
         reviewsArray.append(message)
+        print(postData)
     }
     
     func postReviewApi() {
-        
+    
         
         if let url = URL(string: "http://54.66.20.75:8080/api/1.0/review/submit"){
             var request = URLRequest(url: url)
@@ -29,12 +30,6 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             
             //  URLSession 本身還是必須執行，為主要上傳功能。
             URLSession.shared.dataTask(with: request) { data, response, error in
-                // 內容單純拿來檢查矩陣內容，與上傳並無關係
-                //                    if let data = data,
-                //                           let content = String(data: data, encoding: .utf8) {
-                //                            print(content)
-                //                        }
-                
             }.resume()
             
         }
@@ -118,9 +113,9 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // 加入商品儲存到本地
         guard let product = product else { return }
         
+        let eventDetail = EventDetailForCollect(action: "add", collectItem: product.id)
         
-        
-        
+        postCollecitonData = UserCollect(userID: SingletonVar.uuid!, eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
         
         
         var favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
@@ -199,8 +194,6 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
-            // ===== angus
-            
             tableView.reloadData()
         }
     }
@@ -226,15 +219,16 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         
         
         let favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
-        
-        if favoriteProducts.contains(where: { $0["productID"] as? Int == product.id }) {
-            likeButton.isSelected = true
-        } else {
-            likeButton.isSelected = false
-        }
-        
-        if let group = UserDefaults.standard.string(forKey: "userGroup") {
-            postData = Review(userID: "\(SingletonVar.uuid)", productID: product.id, version: "\(SingletonVar.group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
+            
+            if favoriteProducts.contains(where: { $0["productID"] as? Int == product.id }) {
+                likeButton.isSelected = true
+            } else {
+                likeButton.isSelected = false
+            }
+        // 將optional 解包，放進要 post 的 data。
+        if let group = SingletonVar.group,
+           let uuid = SingletonVar.uuid {
+            postData = Review(userID: "\(uuid)", productID: product.id, version: "\(group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
         }
         
         reviewsArray = product.reviews
@@ -423,3 +417,33 @@ extension ProductDetailViewController: ProductPickerControllerDelegate {
 }
 
 
+extension ProductDetailViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let productID = product {
+            postApiForViewItem(productID: "\(productID.id)")
+        }
+
+    }
+
+    
+    func postApiForViewItem(productID: String) {
+        
+        let userViewItem = UserViewItemAndAddToCart(userID: SingletonVar.uuid!, eventType: "view_item", eventDetail: productID, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
+        
+             if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking"){
+                 var request = URLRequest(url: url)
+                 // httpMethod 設定
+                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                 request.httpMethod = "POST"
+                 // 將內容加入 httpBody
+                 request.httpBody = try? JSONEncoder().encode(userViewItem)
+     
+                 //  URLSession 本身還是必須執行，為主要上傳功能。
+                 URLSession.shared.dataTask(with: request) { data, response, error in
+                 }.resume()
+     
+             }
+    }
+    
+}
