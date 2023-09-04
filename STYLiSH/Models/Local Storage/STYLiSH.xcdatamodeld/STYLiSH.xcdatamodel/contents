@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+
     <entity name="LSColor" representedClassName="LSColor" syncable="YES" codeGenerationType="class">
         <attribute name="code" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -20,10 +21,12 @@
         <attribute name="detail" attributeType="String"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="images" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="keywords" optional="YES" attributeType="String"/>
         <attribute name="mainImage" attributeType="String"/>
         <attribute name="note" attributeType="String"/>
         <attribute name="place" attributeType="String"/>
         <attribute name="price" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reviews" optional="YES" attributeType="String"/>
         <attribute name="sizes" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="story" attributeType="String"/>
         <attribute name="texture" attributeType="String"/>
