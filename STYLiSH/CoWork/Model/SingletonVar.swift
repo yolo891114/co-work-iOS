@@ -19,5 +19,13 @@ class SingletonVar {
         
     }
     
+    static var date: String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: Date())
+        
+    }
+    
     
 }

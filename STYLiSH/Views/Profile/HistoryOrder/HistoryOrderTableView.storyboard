@@ -18,34 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-bQ-GgK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-bQ-GgK">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryOrderTableViewCell" id="g18-fP-4gU" customClass="HistoryOrderTableViewCell" customModule="STYLiSH" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="128"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g18-fP-4gU" id="OLr-vf-pRR">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipS-sO-2FG">
-                                                    <rect key="frame" x="16" y="8" width="361" height="112"/>
+                                                    <rect key="frame" x="16" y="8" width="361" height="144"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9月28日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="080-sJ-sw3">
-                                                            <rect key="frame" x="16" y="16" width="65.333333333333329" height="21"/>
+                                                            <rect key="frame" x="16" y="8" width="65.333333333333329" height="37"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單編號：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esm-b7-bqf">
-                                                            <rect key="frame" x="16" y="45" width="86.666666666666671" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="訂單編號：D9E7FFAE-E570-4431-95BD-5C2131FCF274" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esm-b7-bqf">
+                                                            <rect key="frame" x="16" y="45" width="329" height="54"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消費金額：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCK-bs-Rhb">
-                                                            <rect key="frame" x="16" y="74" width="87" height="21"/>
+                                                            <rect key="frame" x="16" y="107" width="87" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -54,11 +54,14 @@
                                                     <color key="backgroundColor" name="B4"/>
                                                     <constraints>
                                                         <constraint firstItem="esm-b7-bqf" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="6ru-gE-ZLG"/>
-                                                        <constraint firstItem="080-sJ-sw3" firstAttribute="top" secondItem="ipS-sO-2FG" secondAttribute="top" constant="16" id="8rU-5V-x3R"/>
+                                                        <constraint firstItem="080-sJ-sw3" firstAttribute="top" secondItem="ipS-sO-2FG" secondAttribute="top" constant="8" id="8rU-5V-x3R"/>
                                                         <constraint firstItem="qCK-bs-Rhb" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="9q4-nK-6Gq"/>
+                                                        <constraint firstAttribute="trailing" secondItem="esm-b7-bqf" secondAttribute="trailing" constant="16" id="Cqt-Oi-ugn"/>
                                                         <constraint firstItem="080-sJ-sw3" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="EEh-VJ-lg2"/>
-                                                        <constraint firstItem="esm-b7-bqf" firstAttribute="top" secondItem="080-sJ-sw3" secondAttribute="bottom" constant="8" id="Fm2-pU-Vq2"/>
+                                                        <constraint firstItem="esm-b7-bqf" firstAttribute="top" secondItem="080-sJ-sw3" secondAttribute="bottom" id="Fm2-pU-Vq2"/>
                                                         <constraint firstItem="qCK-bs-Rhb" firstAttribute="top" secondItem="esm-b7-bqf" secondAttribute="bottom" constant="8" id="Qzc-Se-2r4"/>
+                                                        <constraint firstItem="esm-b7-bqf" firstAttribute="centerY" secondItem="ipS-sO-2FG" secondAttribute="centerY" id="Xth-fP-eUb"/>
+                                                        <constraint firstAttribute="bottom" secondItem="qCK-bs-Rhb" secondAttribute="bottom" constant="16" id="nuX-LA-RX8"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
