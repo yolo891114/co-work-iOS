@@ -8,7 +8,16 @@
 
 import Foundation
 
-class SigletonVar {
+class SingletonVar {
     static let uuid = UserDefaults.standard.string(forKey: "uuid")
     static let group = UserDefaults.standard.string(forKey: "userGroup")
+    static var timeStamp: String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: Date())
+        
+    }
+    
+    
 }

@@ -12,10 +12,8 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
     func sendMessage(message: String) {
         // fetch new product api
-        tableView.beginHeaderRefreshing()
-        tableView.reloadData()
         postData?.review = message
-        print("================",postData)
+        reviewsArray.append(message)
     }
     
     func postReviewApi() {
@@ -36,6 +34,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
 //                           let content = String(data: data, encoding: .utf8) {
 //                            print(content)
 //                        }
+
             }.resume()
 
         }
@@ -44,6 +43,12 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
 // MARK: - 公用變數
     var postData: Review?
+    
+    var reviewsArray: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private let likeButton: UIButton = {
         let button = UIButton()
@@ -150,11 +155,13 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
-////===== angus
-//            if let postData = postData {
-//            }
+ // ===== angus
+            
+            tableView.reloadData()
         }
     }
+    
+
     
     private var pickerViewController: ProductPickerController?
     
@@ -183,8 +190,10 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             }
 
         if let group = UserDefaults.standard.string(forKey: "userGroup") {
-            postData = Review(userID: "問書瑜", productID: product.id, version: group, review: "", timestamp: "")
+            postData = Review(userID: "\(SingletonVar.uuid)", productID: product.id, version: "\(SingletonVar.group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
         }
+        
+        reviewsArray = product.reviews
 
     }
     
@@ -302,7 +311,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             return 1
         } else {
             guard product != nil else { return 0 }
-            return product?.reviews.count ?? 0
+            return reviewsArray.count
         }
     }
     
@@ -322,7 +331,8 @@ extension ProductDetailViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductMessageTableViewCell", for: indexPath) as? ProductMessageTableViewCell else { return UITableViewCell() }
             
-            cell.messgeLabel.text = product?.reviews[indexPath.row]
+            cell.messgeLabel.text = reviewsArray[indexPath.row]
+            
             return cell
         }
     }
