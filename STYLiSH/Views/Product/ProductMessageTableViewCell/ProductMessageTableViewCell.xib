@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="Zj8-pg-Iq3" customClass="ProductMessageTableViewCell" customModule="STYLiSH" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Zj8-pg-Iq3" id="Vuh-b1-dFo">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-q1-NnF">
+                        <rect key="frame" x="10" y="15" width="322" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="DLo-PU-yna"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <buttonConfiguration key="configuration" style="plain">
+                            <backgroundConfiguration key="background" cornerRadius="50">
+                                <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </backgroundConfiguration>
+                        </buttonConfiguration>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJM-3F-Hzl">
+                        <rect key="frame" x="20" y="30" width="302" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3yv-q1-NnF" secondAttribute="bottom" id="HGN-8n-Q7b"/>
+                    <constraint firstItem="RJM-3F-Hzl" firstAttribute="leading" secondItem="3yv-q1-NnF" secondAttribute="leading" constant="25" id="MrV-Ou-RWA"/>
+                    <constraint firstItem="RJM-3F-Hzl" firstAttribute="centerY" secondItem="3yv-q1-NnF" secondAttribute="centerY" id="XKX-6T-WEH"/>
+                    <constraint firstItem="RJM-3F-Hzl" firstAttribute="trailing" secondItem="3yv-q1-NnF" secondAttribute="trailing" constant="-10" id="bdS-n4-9Yd"/>
+                    <constraint firstAttribute="trailing" secondItem="3yv-q1-NnF" secondAttribute="trailing" constant="10" id="fNa-nR-wY0"/>
+                    <constraint firstItem="3yv-q1-NnF" firstAttribute="leading" secondItem="Vuh-b1-dFo" secondAttribute="leading" constant="10" id="fvR-9S-mrk"/>
+                    <constraint firstItem="3yv-q1-NnF" firstAttribute="top" secondItem="Vuh-b1-dFo" secondAttribute="top" constant="15" id="iOf-QH-lRp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="rhA-CI-8cQ"/>
+            <connections>
+                <outlet property="messgeLabel" destination="RJM-3F-Hzl" id="inJ-Ok-E5i"/>
+            </connections>
+            <point key="canvasLocation" x="-102.29007633587786" y="-58.098591549295776"/>
+        </tableViewCell>
+    </objects>
+</document>

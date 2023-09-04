@@ -8,8 +8,43 @@
 
 import UIKit
 
-class ProductDetailViewController: STBaseViewController {
+class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
+    func sendMessage(message: String) {
+        mockDataToMessage.append(message)
+    }
+    
+    func postReviewApi() {
+        
+ 
+        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/review/submit"){
+            var request = URLRequest(url: url)
+            // httpMethod 設定
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            // 將內容加入 httpBody
+            request.httpBody = try? JSONEncoder().encode(postData)
+
+            //  URLSession 本身還是必須執行，為主要上傳功能。
+            URLSession.shared.dataTask(with: request) { data, response, error in
+// 內容單純拿來檢查矩陣內容，與上傳並無關係
+                    if let data = data,
+                           let content = String(data: data, encoding: .utf8) {
+                            print(content)
+                        }
+            }.resume()
+            
+        }
+    }
+    
+// MARK: - 公用變數
+    var postData: Review?
+
+    var mockDataToMessage = ["1","2"] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private let likeButton: UIButton = {
         let button = UIButton()
@@ -75,6 +110,9 @@ class ProductDetailViewController: STBaseViewController {
         
         
     }
+
+// ================= 以上 angus
+
     
     private struct Segue {
         static let picker = "SeguePicker"
@@ -113,6 +151,9 @@ class ProductDetailViewController: STBaseViewController {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
+////===== angus
+//            if let postData = postData {
+//            }
         }
     }
     
@@ -130,9 +171,10 @@ class ProductDetailViewController: STBaseViewController {
         
         guard let product = product else { return }
         galleryView.datas = product.images
-        view.addSubview(likeButton)
+        galleryView.addSubview(likeButton)
         setLayout()
         
+
         let favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
             
             if favoriteProducts.contains(where: { $0["productID"] as? Int == product.id }) {
@@ -140,6 +182,11 @@ class ProductDetailViewController: STBaseViewController {
             } else {
                 likeButton.isSelected = false
             }
+
+        if let group = UserDefaults.standard.string(forKey: "userGroup") {
+            postData = Review(userID: "問書瑜", productID: product.id, review: "", timestamp: "", version: group)
+        }
+
     }
     
     private func setupTableView() {
@@ -155,6 +202,20 @@ class ProductDetailViewController: STBaseViewController {
             identifier: ProductDetailCell.label,
             bundle: nil
         )
+        //============== angus
+        // 留言輸入框
+        tableView.lk_registerCellWithNib(
+            identifier: String(describing: MessageTextFieldTableViewCell.self),
+            bundle: nil
+        )
+        // 留言們
+        tableView.lk_registerCellWithNib(
+            identifier: String(describing: ProductMessageTableViewCell.self),
+            bundle: nil
+        )
+
+        
+        //==============
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -228,16 +289,45 @@ class ProductDetailViewController: STBaseViewController {
 
 // MARK: - UITableViewDataSource
 extension ProductDetailViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard product != nil else { return 0 }
-        return datas.count
+        if section == 0 {
+            guard product != nil else { return 0 }
+            return datas.count
+        } else if section == 1 {
+            return 1
+        } else {
+            guard product != nil else { return 0 }
+            return product?.reviews.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let product = product else { return UITableViewCell() }
-        return datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
+        if indexPath.section == 0 {
+            guard let product = product else { return UITableViewCell() }
+            return datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
+        } else if indexPath.section == 1 {
+            // 放入輸入留言的 textField
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTextFieldTableViewCell", for: indexPath) as? MessageTextFieldTableViewCell else { return UITableViewCell() }
+            
+            cell.delegate = self
+          
+
+            return cell
+            
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductMessageTableViewCell", for: indexPath) as? ProductMessageTableViewCell else { return UITableViewCell() }
+            
+            cell.messgeLabel.text = product?.reviews[indexPath.row]
+            return cell
+        }
     }
+
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {

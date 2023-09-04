@@ -4,7 +4,8 @@
 //
 //  Created by WU CHIH WEI on 2019/2/13.
 //  Copyright © 2019 AppWorks School. All rights reserved.
-//
+// 9/2 新增 keywords reviews 的 key
+// 在 coredata 那邊也新增了這兩個，不知道會不會用到。
 
 import Foundation
 
@@ -28,7 +29,10 @@ struct Product: Codable {
     let variants: [Variant]
     let mainImage: String
     let images: [String]
-
+    let keywords: [String]
+    let reviews: [String]
+    
+    
     var size: String {
         return (sizes.first ?? "") + " - " + (sizes.last ?? "")
     }
@@ -54,6 +58,8 @@ struct Product: Codable {
         case variants
         case mainImage = "main_image"
         case images
+        case keywords
+        case reviews
     }
 }
 
