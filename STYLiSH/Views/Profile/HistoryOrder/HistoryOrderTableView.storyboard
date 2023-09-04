@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History Order View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="HistoryOrderViewController" id="Y6W-OH-hqX" customClass="HistoryOrderViewController" customModule="STYLiSH" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-bQ-GgK">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryOrderTableViewCell" id="g18-fP-4gU" customClass="HistoryOrderTableViewCell" customModule="STYLiSH" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g18-fP-4gU" id="OLr-vf-pRR">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipS-sO-2FG">
+                                                    <rect key="frame" x="16" y="8" width="361" height="112"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9月28日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="080-sJ-sw3">
+                                                            <rect key="frame" x="16" y="16" width="65.333333333333329" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單編號：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esm-b7-bqf">
+                                                            <rect key="frame" x="16" y="45" width="86.666666666666671" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消費金額：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCK-bs-Rhb">
+                                                            <rect key="frame" x="16" y="74" width="87" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="B4"/>
+                                                    <constraints>
+                                                        <constraint firstItem="esm-b7-bqf" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="6ru-gE-ZLG"/>
+                                                        <constraint firstItem="080-sJ-sw3" firstAttribute="top" secondItem="ipS-sO-2FG" secondAttribute="top" constant="16" id="8rU-5V-x3R"/>
+                                                        <constraint firstItem="qCK-bs-Rhb" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="9q4-nK-6Gq"/>
+                                                        <constraint firstItem="080-sJ-sw3" firstAttribute="leading" secondItem="ipS-sO-2FG" secondAttribute="leading" constant="16" id="EEh-VJ-lg2"/>
+                                                        <constraint firstItem="esm-b7-bqf" firstAttribute="top" secondItem="080-sJ-sw3" secondAttribute="bottom" constant="8" id="Fm2-pU-Vq2"/>
+                                                        <constraint firstItem="qCK-bs-Rhb" firstAttribute="top" secondItem="esm-b7-bqf" secondAttribute="bottom" constant="8" id="Qzc-Se-2r4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ipS-sO-2FG" secondAttribute="bottom" constant="8" id="QM6-He-ur1"/>
+                                                <constraint firstAttribute="trailing" secondItem="ipS-sO-2FG" secondAttribute="trailing" constant="16" id="fb1-RD-1F7"/>
+                                                <constraint firstItem="ipS-sO-2FG" firstAttribute="leading" secondItem="OLr-vf-pRR" secondAttribute="leading" constant="16" id="ivb-3Y-Tx8"/>
+                                                <constraint firstItem="ipS-sO-2FG" firstAttribute="top" secondItem="OLr-vf-pRR" secondAttribute="top" constant="8" id="kXV-lx-I1T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="borderView" destination="ipS-sO-2FG" id="RIv-KB-kAJ"/>
+                                            <outlet property="dateLabel" destination="080-sJ-sw3" id="KD0-Zd-umF"/>
+                                            <outlet property="orderIDLabel" destination="esm-b7-bqf" id="sjk-lN-ovj"/>
+                                            <outlet property="orderSumLabel" destination="qCK-bs-Rhb" id="tpg-rj-c8z"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hhh-bQ-GgK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1GR-yr-oPK"/>
+                            <constraint firstItem="Hhh-bQ-GgK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Fzj-4e-Rqn"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Hhh-bQ-GgK" secondAttribute="trailing" id="nYl-2Z-w3O"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Hhh-bQ-GgK" secondAttribute="bottom" id="sYf-BA-8YZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="historyTableView" destination="Hhh-bQ-GgK" id="GmK-sY-feS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="B4">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
