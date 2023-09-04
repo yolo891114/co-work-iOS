@@ -11,7 +11,11 @@ import UIKit
 class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
     func sendMessage(message: String) {
-        mockDataToMessage.append(message)
+        // fetch new product api
+        tableView.beginHeaderRefreshing()
+        tableView.reloadData()
+        postData?.review = message
+        print("================",postData)
     }
     
     func postReviewApi() {
@@ -28,23 +32,18 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             //  URLSession 本身還是必須執行，為主要上傳功能。
             URLSession.shared.dataTask(with: request) { data, response, error in
 // 內容單純拿來檢查矩陣內容，與上傳並無關係
-                    if let data = data,
-                           let content = String(data: data, encoding: .utf8) {
-                            print(content)
-                        }
+//                    if let data = data,
+//                           let content = String(data: data, encoding: .utf8) {
+//                            print(content)
+//                        }
             }.resume()
-            
+
         }
     }
+
     
 // MARK: - 公用變數
     var postData: Review?
-
-    var mockDataToMessage = ["1","2"] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
     private let likeButton: UIButton = {
         let button = UIButton()
@@ -184,7 +183,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             }
 
         if let group = UserDefaults.standard.string(forKey: "userGroup") {
-            postData = Review(userID: "問書瑜", productID: product.id, review: "", timestamp: "", version: group)
+            postData = Review(userID: "問書瑜", productID: product.id, version: group, review: "", timestamp: "")
         }
 
     }
