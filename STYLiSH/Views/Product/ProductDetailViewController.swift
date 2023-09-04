@@ -48,25 +48,31 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
     private let likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        button.tintColor = .systemPink
-//        button.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        if UserDefaults.standard.string(forKey: "userGroup") == "A" {
+            button.setImage(UIImage(systemName: "heart"), for: .normal)
+            button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            button.tintColor = .systemPink
+        } else {
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            button.setImage(UIImage(systemName: "star.fill"), for: .selected)
+            button.tintColor = .systemYellow
+        }
+        
         button.addTarget(self, action: #selector(tappedLike), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30))
-                button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
+        button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
         return button
     }()
     
     func setLayout() {
-
+        
         NSLayoutConstraint.activate([
             likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             likeButton.bottomAnchor.constraint(equalTo: galleryView.bottomAnchor, constant: -10),
             likeButton.widthAnchor.constraint(equalToConstant: 50),
             likeButton.heightAnchor.constraint(equalToConstant: 50)
-
+            
         ])
         
     }
@@ -76,44 +82,71 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // 傳送 tracking API 給 data
         // 加入商品儲存到本地
         guard let product = product else { return }
-        print(product)
+        
+        
+        var favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
+            
+            let newFavorite: [String: Any] = [
+                "productID": product.id,
+                "title": product.title,
+                "price": product.price,
+                "imageURL": product.mainImage
+            ]
+            
+            if likeButton.isSelected {
+                favoriteProducts.append(newFavorite)
+            } else {
+                favoriteProducts = favoriteProducts.filter { $0["productID"] as? Int != product.id }
+            }
+            
+            UserDefaults.standard.setValue(favoriteProducts, forKey: "favoriteProducts")
+        
+        for product in favoriteProducts {
+            if let title = product["title"] as? String {
+                print(title)
+            }
+            print(product)
+        }
+        
         
     }
+
 // ================= 以上 angus
+
     
     private struct Segue {
         static let picker = "SeguePicker"
     }
-
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
         }
     }
-
+    
     @IBOutlet weak var galleryView: LKGalleryView! {
         didSet {
             galleryView.frame.size.height = CGFloat(Int(UIScreen.width / 375.0 * 500.0))
             galleryView.delegate = self
         }
     }
-
+    
     @IBOutlet weak var productPickerView: UIView!
-
+    
     @IBOutlet weak var addToCarBtn: UIButton!
     
     @IBOutlet weak var baseView: UIView!
-
+    
     private lazy var blurView: UIView = {
         let blurView = UIView(frame: tableView.frame)
         blurView.backgroundColor = .black.withAlphaComponent(0.4)
         return blurView
     }()
-
+    
     private let datas: [ProductContentCategory] = [
         .description, .color, .size, .stock, .texture, .washing, .placeOfProduction, .remarks
     ]
-
+    
     var product: Product? {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
@@ -123,29 +156,39 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
 //            }
         }
     }
-
+    
     private var pickerViewController: ProductPickerController?
-
+    
     override var isHideNavigationBar: Bool { return true }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTableView()
-
+        
         guard let product = product else { return }
         galleryView.datas = product.images
         galleryView.addSubview(likeButton)
         setLayout()
         
+
+        let favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
+            
+            if favoriteProducts.contains(where: { $0["productID"] as? Int == product.id }) {
+                likeButton.isSelected = true
+            } else {
+                likeButton.isSelected = false
+            }
+
         if let group = UserDefaults.standard.string(forKey: "userGroup") {
             postData = Review(userID: "問書瑜", productID: product.id, review: "", timestamp: "", version: group)
         }
-    }
 
+    }
+    
     private func setupTableView() {
         tableView.lk_registerCellWithNib(
             identifier: String(describing: ProductDescriptionTableViewCell.self),
@@ -174,7 +217,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         
         //==============
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Segue.picker,
            let pickerVC = segue.destination as? ProductPickerController {
@@ -183,7 +226,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             pickerViewController = pickerVC
         }
     }
-
+    
     // MARK: - Action
     @IBAction func didTouchAddToCarBtn(_ sender: UIButton) {
         if productPickerView.superview == nil {
@@ -211,7 +254,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             )
         }
     }
-
+    
     func showProductPickerView() {
         let maxY = tableView.frame.maxY
         productPickerView.frame = CGRect(
@@ -219,7 +262,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         )
         baseView.insertSubview(productPickerView, belowSubview: addToCarBtn.superview!)
         baseView.insertSubview(blurView, belowSubview: productPickerView)
-
+        
         UIView.animate(
             withDuration: 0.3,
             animations: { [weak self] in
@@ -232,7 +275,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             }
         )
     }
-
+    
     func isEnableAddToCarBtn(_ flag: Bool) {
         if flag {
             addToCarBtn.isEnabled = true
@@ -250,6 +293,7 @@ extension ProductDetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -262,7 +306,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             return product?.reviews.count ?? 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let product = product else { return UITableViewCell() }
@@ -287,18 +331,18 @@ extension ProductDetailViewController: UITableViewDataSource {
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {
-
+    
     func sizeForItem(_ galleryView: LKGalleryView) -> CGSize {
         return CGSize(width: Int(UIScreen.width), height: Int(UIScreen.width / 375.0 * 500.0))
     }
 }
 
 extension ProductDetailViewController: ProductPickerControllerDelegate {
-
+    
     func dismissPicker(_ controller: ProductPickerController) {
         let origin = productPickerView.frame
         let nextFrame = CGRect(x: origin.minX, y: origin.maxY, width: origin.width, height: origin.height)
-
+        
         UIView.animate(
             withDuration: 0.3,
             animations: { [weak self] in
@@ -311,7 +355,7 @@ extension ProductDetailViewController: ProductPickerControllerDelegate {
             }
         )
     }
-
+    
     func valueChange(_ controller: ProductPickerController) {
         guard
             controller.selectedColor != nil,

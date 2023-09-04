@@ -113,6 +113,66 @@ typealias LSOrderResult = (Result<LSOrder>) -> Void
             completion(Result.failure(error))
         }
     }
+    
+//    func saveOrder(
+//        title: String,
+//        price: Int,
+//        imageURL: String,
+//        product: Product,
+//        completion: (Result<Void>) -> Void) {
+//            let lsProduct = LSProduct(context: viewContext)
+//            lsProduct.mapping(product)
+//
+//            let lsColor = LSColor(context: viewContext)
+//            lsColor.mapping(color)
+//
+//            let order = LSOrder(context: viewContext)
+//            order.amount = amount.int64()
+//            order.selectedColor = lsColor
+//            order.seletedSize = size
+//            order.product = lsProduct
+//            order.createTime = Int(Date().timeIntervalSince1970).int64()
+//
+//            save(completion: completion)
+//        }
+//    func saveFavorite(product: LSProduct, completion: (Result<Void>) -> Void) {
+//            let favorite = LSFavorite(context: viewContext)
+//            favorite.favoriteProduct = product
+//
+//            save(completion: completion)
+//        }
+    
+    func deleteFavoriteProduct(_ favoriteProduct: LSFavorite, completion: (Result<Void>) -> Void) {
+        viewContext.delete(favoriteProduct)
+        save(completion: completion)
+    }
+    
+    @objc dynamic var favorites: [LSFavorite] = []
+
+        // 獲取所有收藏商品
+        func fetchFavorites(completion: (Result<[LSFavorite]>) -> Void = { _ in }) {
+            let request = NSFetchRequest<LSFavorite>(entityName: "LSFavorite")
+            do {
+                let favorites = try viewContext.fetch(request)
+                self.favorites = favorites
+                completion(Result.success(favorites))
+            } catch {
+                completion(Result.failure(error))
+            }
+        }
+
+    
+//    func saveFavoriteProduct(_ product: Product, completion: (Result<Void>) -> Void) {
+//        let lsProduct = LSProduct(context: viewContext)
+//        lsProduct.mapping(product)
+//
+//        let favorite = LSFavorite(context: viewContext)
+//        favorite.favoriteProduct = lsProduct
+//        save(completion: completion)
+//    }
+//
+    
+    
 }
 
 // MARK: - Data Operation
@@ -163,4 +223,8 @@ private extension LSVariant {
         size = object.size
         stocks = object.stock.int64()
     }
+}
+
+extension LSFavorite {
+    @NSManaged public var favoriteProduct: LSProduct?
 }
