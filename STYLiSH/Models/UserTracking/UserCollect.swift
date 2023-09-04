@@ -10,7 +10,8 @@ import Foundation
 
 // MARK: - UserCollect
 struct UserCollect: Codable {
-    let userID, eventType: String
+    let userID: String
+    let eventType: String = "collect"
     let eventDetail: EventDetailForCollect
     let timestamp, version: String
 
@@ -24,7 +25,8 @@ struct UserCollect: Codable {
 
 // MARK: - EventDetail
 struct EventDetailForCollect: Codable {
-    let action, collectItem: String
+    let action: String
+    let collectItem: Int
 
     enum CodingKeys: String, CodingKey {
         case action

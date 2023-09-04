@@ -10,6 +10,19 @@ import Foundation
 
 class HistoryOrderTableViewCell: UITableViewCell {
     
-    
-    
+    @IBOutlet weak var borderView: UIView! {
+        didSet {
+            borderView.backgroundColor = .clear
+            borderView.lkBorderColor = .black
+            borderView.lkBorderWidth = 1
+            borderView.lkCornerRadius = 5
+        }
+    }
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var orderIDLabel: UILabel!
+    @IBOutlet weak var orderSumLabel: UILabel!
+ 
+    override class func awakeFromNib() {
+        
+    }
 }

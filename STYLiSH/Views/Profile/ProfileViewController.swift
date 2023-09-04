@@ -93,6 +93,12 @@ extension ProfileViewController: UICollectionViewDataSource {
                 navigationController?.pushViewController(likeVC, animated: true)
             }
         }
+        if indexPath.section == 0, indexPath.row == 3 {
+            let storyboard = UIStoryboard(name: "HistoryOrderTableView", bundle: nil)
+            if let historyVC = storyboard.instantiateViewController(identifier: "HistoryOrderViewController") as? HistoryOrderViewController {
+                navigationController?.pushViewController(historyVC, animated: true)
+            }
+        }
     }
 
     func collectionView(

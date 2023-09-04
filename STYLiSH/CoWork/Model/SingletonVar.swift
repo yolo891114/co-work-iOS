@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SigletonVar {
+class SingletonVar {
     static let uuid = UserDefaults.standard.string(forKey: "uuid")
     static let group = UserDefaults.standard.string(forKey: "userGroup")
 }
