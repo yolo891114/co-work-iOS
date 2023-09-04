@@ -19,5 +19,20 @@ class SingletonVar {
         
     }
     
-    
+//    func postApi() {
+//        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/review/submit"){
+//            var request = URLRequest(url: url)
+//            // httpMethod 設定
+//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.httpMethod = "POST"
+//            // 將內容加入 httpBody
+//            request.httpBody = try? JSONEncoder().encode(postData)
+//
+//            //  URLSession 本身還是必須執行，為主要上傳功能。
+//            URLSession.shared.dataTask(with: request) { data, response, error in
+//
+//            }.resume()
+//
+//        }
+//    }
 }

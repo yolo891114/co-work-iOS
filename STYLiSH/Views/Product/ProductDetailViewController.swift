@@ -14,6 +14,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // fetch new product api
         postData?.review = message
         reviewsArray.append(message)
+        print(postData)
     }
     
     func postReviewApi() {
@@ -115,7 +116,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         guard let product = product else { return }
         
         let eventDetail = EventDetailForCollect(action: "add", collectItem: product.id)
-        postCollecitonData = UserCollect(userID: SingletonVar.uuid, eventDetail: eventDetail, timestamp: <#T##String#>, version: SingletonVar.group)
+        postCollecitonData = UserCollect(userID: SingletonVar.uuid!, eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
         
         
         var favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
