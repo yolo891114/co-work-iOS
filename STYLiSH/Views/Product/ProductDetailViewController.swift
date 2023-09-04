@@ -14,11 +14,12 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         // fetch new product api
         postData?.review = message
         reviewsArray.append(message)
+        print(postData)
     }
     
     func postReviewApi() {
+    
         
- 
         if let url = URL(string: "http://54.66.20.75:8080/api/1.0/review/submit"){
             var request = URLRequest(url: url)
             // httpMethod 設定
@@ -26,20 +27,14 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             request.httpMethod = "POST"
             // 將內容加入 httpBody
             request.httpBody = try? JSONEncoder().encode(postData)
-
+            
             //  URLSession 本身還是必須執行，為主要上傳功能。
             URLSession.shared.dataTask(with: request) { data, response, error in
-// 內容單純拿來檢查矩陣內容，與上傳並無關係
-//                    if let data = data,
-//                           let content = String(data: data, encoding: .utf8) {
-//                            print(content)
-//                        }
-
             }.resume()
-
+            
         }
     }
-
+    
     
     // 慾望清單API（收藏）
     func postCollectionApi() {
@@ -57,20 +52,24 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
                 
                 if let data = data,
                    let content = String(data: data, encoding: .utf8) {
-                    print(content)
+                    print("===\(content)")
+                }
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("HTTP Status Code: \(httpResponse.statusCode)")
                 }
                 if let error = error {
                     print("Error when post collection API:\(error)")
+                    
                 }
-            }
+            }.resume()
         }
     }
     
-// MARK: - 公用變數
+    // MARK: - 公用變數
     var postData: Review?
-  
+    
     var postCollecitonData: UserCollect?
-
+    
     var reviewsArray: [String] = [] {
         didSet {
             tableView.reloadData()
@@ -115,39 +114,48 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         guard let product = product else { return }
         
         let eventDetail = EventDetailForCollect(action: "add", collectItem: product.id)
-        postCollecitonData = UserCollect(userID: SingletonVar.uuid, eventDetail: eventDetail, timestamp: <#T##String#>, version: SingletonVar.group)
+        
+        postCollecitonData = UserCollect(userID: SingletonVar.uuid!, eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
         
         
         var favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
+        
+        let newFavorite: [String: Any] = [
+            "productID": product.id,
+            "title": product.title,
+            "price": product.price,
+            "imageURL": product.mainImage
+        ]
+        
+        if likeButton.isSelected {
+            favoriteProducts.append(newFavorite)
             
-            let newFavorite: [String: Any] = [
-                "productID": product.id,
-                "title": product.title,
-                "price": product.price,
-                "imageURL": product.mainImage
-            ]
+            let eventDetail = EventDetailForCollect(action: "add", collectItem: product.id)
+            postCollecitonData = UserCollect(userID: SingletonVar.uuid!, eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
             
-            if likeButton.isSelected {
-                favoriteProducts.append(newFavorite)
-                
-            } else {
-                favoriteProducts = favoriteProducts.filter { $0["productID"] as? Int != product.id }
-            }
+            postCollectionApi()
             
-            UserDefaults.standard.setValue(favoriteProducts, forKey: "favoriteProducts")
+        } else {
+            favoriteProducts = favoriteProducts.filter { $0["productID"] as? Int != product.id }
+            let eventDetail = EventDetailForCollect(action: "remove", collectItem: product.id)
+            postCollecitonData = UserCollect(userID: SingletonVar.uuid!, eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
+            
+            postCollectionApi()
+        }
+        
+        UserDefaults.standard.setValue(favoriteProducts, forKey: "favoriteProducts")
         
         for product in favoriteProducts {
             if let title = product["title"] as? String {
                 print(title)
             }
-            print(product)
         }
         
         
     }
-
-// ================= 以上 angus
-
+    
+    // ================= 以上 angus
+    
     
     private struct Segue {
         static let picker = "SeguePicker"
@@ -186,13 +194,11 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
- // ===== angus
-            
             tableView.reloadData()
         }
     }
     
-
+    
     
     private var pickerViewController: ProductPickerController?
     
@@ -211,7 +217,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         galleryView.addSubview(likeButton)
         setLayout()
         
-
+        
         let favoriteProducts: [[String: Any]] = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] ?? []
             
             if favoriteProducts.contains(where: { $0["productID"] as? Int == product.id }) {
@@ -219,13 +225,14 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             } else {
                 likeButton.isSelected = false
             }
-
-        if let group = UserDefaults.standard.string(forKey: "userGroup") {
-            postData = Review(userID: "\(SingletonVar.uuid)", productID: product.id, version: "\(SingletonVar.group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
+        // 將optional 解包，放進要 post 的 data。
+        if let group = SingletonVar.group,
+           let uuid = SingletonVar.uuid {
+            postData = Review(userID: "\(uuid)", productID: product.id, version: "\(group)", review: "", timestamp: "\(SingletonVar.timeStamp)")
         }
         
         reviewsArray = product.reviews
-
+        
     }
     
     private func setupTableView() {
@@ -252,7 +259,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
             identifier: String(describing: ProductMessageTableViewCell.self),
             bundle: nil
         )
-
+        
         
         //==============
     }
@@ -328,11 +335,11 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
 
 // MARK: - UITableViewDataSource
 extension ProductDetailViewController: UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -355,8 +362,8 @@ extension ProductDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTextFieldTableViewCell", for: indexPath) as? MessageTextFieldTableViewCell else { return UITableViewCell() }
             
             cell.delegate = self
-          
-
+            
+            
             return cell
             
         } else {
@@ -367,7 +374,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             return cell
         }
     }
-
+    
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {
@@ -407,4 +414,36 @@ extension ProductDetailViewController: ProductPickerControllerDelegate {
         }
         isEnableAddToCarBtn(true)
     }
+}
+
+
+extension ProductDetailViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let productID = product {
+            postApiForViewItem(productID: "\(productID.id)")
+        }
+
+    }
+
+    
+    func postApiForViewItem(productID: String) {
+        
+        let userViewItem = UserViewItemAndAddToCart(userID: SingletonVar.uuid!, eventType: "view_item", eventDetail: productID, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
+        
+             if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking"){
+                 var request = URLRequest(url: url)
+                 // httpMethod 設定
+                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                 request.httpMethod = "POST"
+                 // 將內容加入 httpBody
+                 request.httpBody = try? JSONEncoder().encode(userViewItem)
+     
+                 //  URLSession 本身還是必須執行，為主要上傳功能。
+                 URLSession.shared.dataTask(with: request) { data, response, error in
+                 }.resume()
+     
+             }
+    }
+    
 }

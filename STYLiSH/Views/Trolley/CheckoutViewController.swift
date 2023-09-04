@@ -27,6 +27,10 @@ class CheckoutViewController: STBaseViewController {
         }
     }
     
+    var postOrderData: OrderModel?
+    
+    var postCheckOutData: UserCheckOut?
+    
     private lazy var tappayVC: STTapPayViewController = {
         guard
             let tappayVC = UIStoryboard.trolley.instantiateViewController(
@@ -83,6 +87,22 @@ class CheckoutViewController: STBaseViewController {
         case .credit: checkoutWithTapPay()
         case .cash: checkoutWithCash()
         }
+        
+        let newOrderId = UUID().uuidString
+        postOrderData =
+        OrderModel(
+            userID: SingletonVar.uuid!,
+            checkoutDate: SingletonVar.date,
+            orderNumber: newOrderId ,
+            totalPrice: orderProvider.order.totalPrice,
+            checkoutItem: ([String(describing: orderProvider.order.products)]),
+            comment: "")
+        
+        let eventDetail = EventDetailForCheckOut(checkoutItem: ([String(describing: orderProvider.order.products)]))
+        postCheckOutData = UserCheckOut(userID: SingletonVar.uuid!, eventType: "checkout", eventDetail: eventDetail, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
+        
+        postOrderApi()
+        postCheckOutApi()
     }
     
     private func onShowLogin() {
@@ -296,5 +316,64 @@ extension CheckoutViewController: STOrderUserInputCellDelegate {
         )
         orderProvider.order.reciever = newReciever
         updateCheckoutButton()
+    }
+}
+
+extension CheckoutViewController {
+    
+    func postOrderApi() {
+        
+        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/order") {
+            var request = URLRequest(url: url)
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            
+            request.httpBody = try? JSONEncoder().encode(postOrderData)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                if let data = data,
+                   let content = String(data: data, encoding: .utf8) {
+                    print("order API:\(content)")
+                }
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("HTTP Status Code: \(httpResponse.statusCode)")
+                }
+                if let error = error {
+                    print("Error when post order API:\(error)")
+                    
+                }
+            }.resume()
+        }
+    }
+    
+    func postCheckOutApi() {
+        
+        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking") {
+            var request = URLRequest(url: url)
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            
+            request.httpBody = try? JSONEncoder().encode(postCheckOutData)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                if let data = data,
+                   let content = String(data: data, encoding: .utf8) {
+                    print("Checkout API:\(content)")
+                }
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("HTTP Status Code: \(httpResponse.statusCode)")
+                }
+                if let error = error {
+                    print("Error when post checkout API:\(error)")
+                    
+                }
+            }.resume()
+        }
     }
 }

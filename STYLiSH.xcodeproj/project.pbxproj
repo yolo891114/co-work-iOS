@@ -133,6 +133,7 @@
 		54C923CB2AA57541009DD74B /* UserHover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923CA2AA57541009DD74B /* UserHover.swift */; };
 		54C923CD2AA57576009DD74B /* UserCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923CC2AA57576009DD74B /* UserCollect.swift */; };
 		54C923CF2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923CE2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift */; };
+		54C923D32AA5C386009DD74B /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923D22AA5C386009DD74B /* OrderModel.swift */; };
 		58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */; };
 		6A49ADCB2AA2F12B003256E9 /* LikeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADCA2AA2F12B003256E9 /* LikeListViewController.swift */; };
 		6A49ADCD2AA302DF003256E9 /* LikeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADCC2AA302DF003256E9 /* LikeListTableViewCell.swift */; };
@@ -287,6 +288,7 @@
 		54C923CA2AA57541009DD74B /* UserHover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHover.swift; sourceTree = "<group>"; };
 		54C923CC2AA57576009DD74B /* UserCollect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollect.swift; sourceTree = "<group>"; };
 		54C923CE2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderTableViewCell.swift; sourceTree = "<group>"; };
+		54C923D22AA5C386009DD74B /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LSColor+Extension.swift"; sourceTree = "<group>"; };
 		6A49ADCA2AA2F12B003256E9 /* LikeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListViewController.swift; sourceTree = "<group>"; };
 		6A49ADCC2AA302DF003256E9 /* LikeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListTableViewCell.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 		3CD2913022113CF3008B8A2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				54C923D12AA5C374009DD74B /* HistoryOrder */,
 				54C923C32AA570D4009DD74B /* UserTracking */,
 				3CE7A51A2230899D009FF003 /* OrderProvider */,
 				3CE7A51122305904009FF003 /* User */,
@@ -735,6 +738,14 @@
 				54C923CC2AA57576009DD74B /* UserCollect.swift */,
 			);
 			path = UserTracking;
+			sourceTree = "<group>";
+		};
+		54C923D12AA5C374009DD74B /* HistoryOrder */ = {
+			isa = PBXGroup;
+			children = (
+				54C923D22AA5C386009DD74B /* OrderModel.swift */,
+			);
+			path = HistoryOrder;
 			sourceTree = "<group>";
 		};
 		5AE6F61E29E3F94A003764C6 /* Auth */ = {
@@ -1079,6 +1090,7 @@
 				3C41B8472216667000112F94 /* ProductViewController.swift in Sources */,
 				543F6C002AA32AD000F6A3AE /* UIViewController+Extension.swift in Sources */,
 				3CE7A51322305916009FF003 /* UserProvider.swift in Sources */,
+				54C923D32AA5C386009DD74B /* OrderModel.swift in Sources */,
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
 				58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */,
