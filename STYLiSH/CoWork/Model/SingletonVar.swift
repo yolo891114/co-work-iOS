@@ -19,7 +19,16 @@ class SingletonVar {
         
     }
     
-//    func postReviewApi() {
+
+    static var date: String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: Date())
+        
+    }
+    
+
     
     
 //    if let url = URL(string: "http://54.66.20.75:8080/api/1.0/review/submit"){

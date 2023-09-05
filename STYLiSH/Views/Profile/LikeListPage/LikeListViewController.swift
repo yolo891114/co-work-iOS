@@ -21,7 +21,7 @@ class LikeListViewController: UIViewController,UITableViewDataSource,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.isHidden = true
+        
 
 
         if let savedFavorites = UserDefaults.standard.array(forKey: "favoriteProducts") as? [[String: Any]] {
@@ -33,9 +33,11 @@ class LikeListViewController: UIViewController,UITableViewDataSource,UITableView
       
 
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.navigationController?.popToRootViewController(animated: false)
+        
     }
  
 
