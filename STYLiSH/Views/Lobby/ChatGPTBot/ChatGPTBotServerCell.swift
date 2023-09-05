@@ -10,4 +10,5 @@ import Foundation
 
 class ChatGPTBotServerCell: UITableViewCell {
     
+    @IBOutlet weak var responseLabel: UILabel!
 }

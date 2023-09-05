@@ -8,6 +8,16 @@
 
 import Foundation
 
-struct ChatGPTModel {
+struct ChatRequest: Codable {
     let tag: String
+}
+
+struct ChatResponse: Codable {
+    let chatResponse: String
+    let productId: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case chatResponse = "chat_response"
+        case productId = "product_id"
+    }
 }
