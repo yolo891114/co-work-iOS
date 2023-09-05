@@ -13,4 +13,5 @@ class ChatGPTBotClientCell: UITableViewCell {
     @IBOutlet weak var chatImage: UIImageView!
     @IBOutlet weak var requestLabel: UILabel!
     
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
 }
