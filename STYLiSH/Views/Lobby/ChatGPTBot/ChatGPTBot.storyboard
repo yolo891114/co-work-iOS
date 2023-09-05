@@ -79,22 +79,22 @@
                                     <constraint firstItem="1eR-Hs-xOd" firstAttribute="centerY" secondItem="HfD-ke-bKw" secondAttribute="centerY" id="xPZ-B7-CSK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-bF-jk5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-bF-jk5">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotClientCell" rowHeight="60" id="2iw-1c-v0r" customClass="ChatGPTBotClientCell" customModule="STYLiSH" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotClientCell" id="2iw-1c-v0r" customClass="ChatGPTBotClientCell" customModule="STYLiSH" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="52.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2iw-1c-v0r" id="VfC-ay-ieF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="52.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-w9-0hw">
-                                                    <rect key="frame" x="65" y="8" width="312" height="44"/>
+                                                    <rect key="frame" x="120" y="8" width="257" height="36.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日系穿搭" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xJ-Ft-a0q">
-                                                            <rect key="frame" x="16" y="8" width="280" height="28"/>
+                                                            <rect key="frame" x="16" y="7.9999999999999982" width="225" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" name="B6"/>
                                                             <nil key="highlightedColor"/>
@@ -118,7 +118,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="a8J-w9-0hw" secondAttribute="bottom" constant="8" id="6xV-ux-GFe"/>
                                                 <constraint firstAttribute="trailing" secondItem="a8J-w9-0hw" secondAttribute="trailing" constant="16" id="Ulu-Rz-7ky"/>
-                                                <constraint firstItem="a8J-w9-0hw" firstAttribute="leading" secondItem="VfC-ay-ieF" secondAttribute="leading" constant="65" id="dW7-ma-vfX"/>
+                                                <constraint firstItem="a8J-w9-0hw" firstAttribute="leading" secondItem="VfC-ay-ieF" secondAttribute="leading" constant="120" id="dW7-ma-vfX"/>
                                                 <constraint firstItem="a8J-w9-0hw" firstAttribute="top" secondItem="VfC-ay-ieF" secondAttribute="top" constant="8" id="sJt-Ds-Dse"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -127,7 +127,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotServerCell" rowHeight="120" id="jl5-vL-o5x" customClass="ChatGPTBotServerCell" customModule="STYLiSH" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110" width="393" height="120"/>
+                                        <rect key="frame" x="0.0" y="102.33333206176758" width="393" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jl5-vL-o5x" id="NJd-VW-KjC">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>

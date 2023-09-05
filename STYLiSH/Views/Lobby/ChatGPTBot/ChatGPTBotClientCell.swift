@@ -10,5 +10,7 @@ import Foundation
 
 class ChatGPTBotClientCell: UITableViewCell {
     
+    @IBOutlet weak var chatImage: UIImageView!
     @IBOutlet weak var requestLabel: UILabel!
+    
 }
