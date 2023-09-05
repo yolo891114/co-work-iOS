@@ -17,7 +17,25 @@ class ChatGPTBotViewController: UIViewController {
     
     @IBOutlet weak var sendButton: UIButton!
     
-    var messages: [String] = []
+    @IBOutlet weak var cameraButton: UIButton!
+    
+    @IBAction func cameraButtonTapped(_ sender: UIButton) {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    enum MessageType {
+        case text(String)
+        case image(UIImage)
+    }
+    
+    var messages: [MessageType] = []
+    
+    var selectPhoto = false // 判定是否有選擇照片
     
     var postChatData: ChatRequest?
     
@@ -30,14 +48,14 @@ class ChatGPTBotViewController: UIViewController {
         
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         
-        chatTableView.estimatedRowHeight = 50
+        chatTableView.estimatedRowHeight = 60
         chatTableView.rowHeight = UITableView.automaticDimension
     }
     
     @objc func sendButtonTapped() {
         
         if let text = chatTextField.text, !text.isEmpty {
-            messages.append(text)
+            messages.append(.text(text))
             
             postChatData = ChatRequest(tag: text)
             
@@ -68,10 +86,23 @@ extension ChatGPTBotViewController: UITableViewDelegate, UITableViewDataSource {
         guard let serverCell = chatTableView.dequeueReusableCell(withIdentifier: "ChatGPTBotServerCell", for: indexPath) as? ChatGPTBotServerCell else { return UITableViewCell() }
         
         if indexPath.row % 2 == 0 {
-            clientCell.requestLabel.text = messages[indexPath.row]
+            switch messages[indexPath.row] {
+            case .text(let textMessage):
+                clientCell.requestLabel.text = textMessage
+                clientCell.chatImage.image = nil
+                clientCell.imageHeightConstraint.constant = 20
+            case .image(let image):
+                clientCell.requestLabel.text = nil
+                clientCell.chatImage.image = image
+            }
             return clientCell
         } else {
-            serverCell.responseLabel.text = messages[indexPath.row]
+            switch messages[indexPath.row] {
+            case .text(let textMessage):
+                serverCell.responseLabel.text = textMessage
+            case .image(_):
+                print("These never happened.")
+            }
             return serverCell
         }
     }
@@ -83,6 +114,7 @@ extension ChatGPTBotViewController {
     
     func postChatApi(indexPath: IndexPath) {
         LKProgressHUD.show()
+        sendButton.isEnabled = false
         if let url = URL(string: "http://54.66.20.75:8080/api/1.0/recommendation/chatbox") {
             var request = URLRequest(url: url)
             
@@ -94,6 +126,7 @@ extension ChatGPTBotViewController {
             
             URLSession.shared.dataTask(with: request) { data, response, error in
                 LKProgressHUD.dismiss()
+                
                 if let data = data {
                     let content = String(data: data, encoding: .utf8)
                     print("Raw Data Received:")
@@ -104,7 +137,8 @@ extension ChatGPTBotViewController {
                         
                         
                         DispatchQueue.main.async {
-                            self.messages.append(chatResponse.chatResponse)
+                            self.sendButton.isEnabled = true
+                            self.messages.append(.text(chatResponse.chatResponse))
                             let newIndexPath = IndexPath(row: self.messages.count - 1, section: 0)
                             self.chatTableView.insertRows(at: [newIndexPath], with: .automatic) // 插入新的 cell
                         }
@@ -126,4 +160,87 @@ extension ChatGPTBotViewController {
             }.resume()
         }
     }
+}
+
+
+extension ChatGPTBotViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        selectPhoto = true
+        if let image = info[.originalImage] as? UIImage {
+            postImageApi(image: image)
+            messages.append(.image(image))
+            let indexPath = IndexPath(row: messages.count - 1, section: 0)
+            chatTableView.insertRows(at: [indexPath], with: .automatic)
+            chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+        
+        
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    func postImageApi(image: UIImage) {
+        LKProgressHUD.show()
+        sendButton.isEnabled = false
+        let url = URL(string: "http://54.66.20.75:8080/api/1.0/recommendation/smart_image")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var body = Data()
+        
+        if let imageData = image.jpegData(compressionQuality: 1) {
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n")
+            body.append("Content-Type: image/jpeg\r\n\r\n")
+            body.append(imageData)
+            body.append("\r\n")
+        }
+        
+        body.append("--\(boundary)--\r\n")
+        
+        request.httpBody = body
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            LKProgressHUD.dismiss()
+            if let data = data {
+                let content = String(data: data, encoding: .utf8)
+                print("圖片分析結果:")
+                print(content ?? "No data")
+                do {
+                    let decoder = JSONDecoder()
+                    let chatResponse = try decoder.decode(ChatResponse.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        self.sendButton.isEnabled = true
+                        self.messages.append(.text(chatResponse.chatResponse))
+                        let newIndexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.chatTableView.insertRows(at: [newIndexPath], with: .automatic) // 插入新的 cell
+                    }
+                    
+                    print("Chat Response: \(chatResponse.chatResponse)")
+                    print("Product ID: \(chatResponse.productId)")
+                    
+                } catch let decodeError {
+                    print("Decoding error: \(decodeError)")
+                }
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Status Code: \(httpResponse.statusCode)")
+            }
+            if let error = error {
+                print("Error when post image API:\(error)")
+                
+            }
+        }.resume()
+    }
+    
+    
 }

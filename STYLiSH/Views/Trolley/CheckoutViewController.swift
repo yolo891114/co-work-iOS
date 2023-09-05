@@ -10,6 +10,13 @@ import UIKit
 
 class CheckoutViewController: STBaseViewController {
     
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: Notification.Name("Regret"), object: nil)
+    }
+        
+    
+    
     private struct Segue {
         static let success = "SegueSuccess"
     }

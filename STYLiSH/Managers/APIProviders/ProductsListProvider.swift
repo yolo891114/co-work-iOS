@@ -32,4 +32,11 @@ class ProductsProvider: ProductListDataProvider {
         case .accessories: dataProvider.fetchProductForAccessories(paging: paging, completion: completion)
         }
     }
+    func fetchDataForAngus(paging: Int, type: ProductType, completion: @escaping ProductsResponseWithPaging) {
+        switch productType {
+        case .women: dataProvider.fetchProductForWomen(paging: paging, completion: completion)
+        case .men: dataProvider.fetchProductForMen(paging: paging, completion: completion)
+        case .accessories: dataProvider.fetchProductForAccessories(paging: paging, completion: completion)
+        }
+    }
 }
