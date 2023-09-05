@@ -93,7 +93,7 @@ class CheckoutViewController: STBaseViewController {
         OrderModel(
             userID: SingletonVar.uuid!,
             checkoutDate: SingletonVar.date,
-            orderNumber: newOrderId ,
+            orderNumber: newOrderId,
             totalPrice: orderProvider.order.totalPrice,
             checkoutItem: ([String(describing: orderProvider.order.products)]),
             comment: "")
