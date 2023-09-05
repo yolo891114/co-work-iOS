@@ -28,13 +28,13 @@
                                             <constraint firstAttribute="height" constant="1" id="wcA-40-ays"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 請輸入想要的穿衣風格" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfD-ke-bKw">
-                                        <rect key="frame" x="16" y="11" width="287" height="39"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 請輸入想要的穿衣風格" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfD-ke-bKw">
+                                        <rect key="frame" x="16" y="11" width="242" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDq-Ec-L8O">
-                                        <rect key="frame" x="311" y="11" width="66" height="39"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDq-Ec-L8O">
+                                        <rect key="frame" x="309" y="11" width="68" height="39"/>
                                         <color key="backgroundColor" name="B3"/>
                                         <color key="tintColor" name="B6"/>
                                         <state key="normal" title="Button"/>
@@ -47,9 +47,23 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eR-Hs-xOd">
+                                        <rect key="frame" x="266" y="15.666666666666629" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="HYo-Ze-L7L"/>
+                                            <constraint firstAttribute="width" constant="35" id="bqI-NK-RPX"/>
+                                        </constraints>
+                                        <color key="tintColor" name="B2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="camera" catalog="system"/>
+                                        <connections>
+                                            <action selector="cameraButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wvv-ub-2Ok"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="1eR-Hs-xOd" firstAttribute="leading" secondItem="HfD-ke-bKw" secondAttribute="trailing" constant="8" id="35T-gx-RGG"/>
                                     <constraint firstItem="cDq-Ec-L8O" firstAttribute="top" secondItem="oee-Qx-tDp" secondAttribute="bottom" constant="10" id="84g-Zv-vKh"/>
                                     <constraint firstItem="HfD-ke-bKw" firstAttribute="leading" secondItem="SM5-H7-6rY" secondAttribute="leading" constant="16" id="A2w-b4-A57"/>
                                     <constraint firstItem="oee-Qx-tDp" firstAttribute="top" secondItem="SM5-H7-6rY" secondAttribute="top" id="Aao-Rg-UwP"/>
@@ -58,28 +72,29 @@
                                     <constraint firstItem="oee-Qx-tDp" firstAttribute="leading" secondItem="SM5-H7-6rY" secondAttribute="leading" id="LrD-aA-ql5"/>
                                     <constraint firstAttribute="trailing" secondItem="cDq-Ec-L8O" secondAttribute="trailing" constant="16" id="NUV-0h-cgv"/>
                                     <constraint firstItem="HfD-ke-bKw" firstAttribute="top" secondItem="oee-Qx-tDp" secondAttribute="bottom" constant="10" id="Ufp-gm-0a8"/>
-                                    <constraint firstAttribute="trailing" secondItem="HfD-ke-bKw" secondAttribute="trailing" constant="90" id="ZUA-5K-xE9"/>
-                                    <constraint firstItem="cDq-Ec-L8O" firstAttribute="leading" secondItem="HfD-ke-bKw" secondAttribute="trailing" constant="8" id="czG-SE-XFi"/>
+                                    <constraint firstAttribute="trailing" secondItem="HfD-ke-bKw" secondAttribute="trailing" constant="135" id="ZUA-5K-xE9"/>
                                     <constraint firstAttribute="height" constant="60" id="jYt-JW-jwY"/>
                                     <constraint firstAttribute="trailing" secondItem="oee-Qx-tDp" secondAttribute="trailing" id="tej-VL-3w8"/>
+                                    <constraint firstItem="cDq-Ec-L8O" firstAttribute="leading" secondItem="1eR-Hs-xOd" secondAttribute="trailing" constant="8" id="x4c-Db-qSx"/>
+                                    <constraint firstItem="1eR-Hs-xOd" firstAttribute="centerY" secondItem="HfD-ke-bKw" secondAttribute="centerY" id="xPZ-B7-CSK"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-bF-jk5">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotClientCell" id="2iw-1c-v0r" customClass="ChatGPTBotClientCell" customModule="STYLiSH" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotClientCell" rowHeight="60" id="2iw-1c-v0r" customClass="ChatGPTBotClientCell" customModule="STYLiSH" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2iw-1c-v0r" id="VfC-ay-ieF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-w9-0hw">
-                                                    <rect key="frame" x="65" y="8" width="312" height="64"/>
+                                                    <rect key="frame" x="65" y="8" width="312" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日系穿搭" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xJ-Ft-a0q">
-                                                            <rect key="frame" x="16" y="8" width="280" height="48"/>
+                                                            <rect key="frame" x="16" y="8" width="280" height="28"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" name="B6"/>
                                                             <nil key="highlightedColor"/>
@@ -112,7 +127,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatGPTBotServerCell" rowHeight="120" id="jl5-vL-o5x" customClass="ChatGPTBotServerCell" customModule="STYLiSH" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="393" height="120"/>
+                                        <rect key="frame" x="0.0" y="110" width="393" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jl5-vL-o5x" id="NJd-VW-KjC">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
@@ -192,6 +207,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="1eR-Hs-xOd" id="lc1-ut-ggy"/>
                         <outlet property="chatTableView" destination="oQu-bF-jk5" id="w9B-AN-Tsz"/>
                         <outlet property="chatTextField" destination="HfD-ke-bKw" id="Jim-2A-eeG"/>
                         <outlet property="sendButton" destination="cDq-Ec-L8O" id="xON-nZ-bSr"/>
@@ -199,13 +215,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="-2"/>
+            <point key="canvasLocation" x="23.664122137404579" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
         <image name="Icon-App-40x40" width="40" height="40"/>
+        <image name="camera" catalog="system" width="128" height="93"/>
         <namedColor name="B1">
             <color red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="B2">
+            <color red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="B3">
             <color red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
