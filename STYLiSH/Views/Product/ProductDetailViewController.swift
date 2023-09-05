@@ -401,6 +401,8 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductMessageTableViewCell", for: indexPath) as? ProductMessageTableViewCell else { return UITableViewCell() }
                 
                 cell.messgeLabel.text = reviewsArray[indexPath.row]
+
+
                 
                 return cell
             }

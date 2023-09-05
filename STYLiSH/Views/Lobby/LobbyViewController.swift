@@ -48,6 +48,7 @@ class LobbyViewController: STBaseViewController {
         navigationItem.rightBarButtonItem = magnifyButton
         navigationItem.rightBarButtonItem?.tintColor = .darkGray
         
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +73,7 @@ class LobbyViewController: STBaseViewController {
             navigationController?.pushViewController(chatgptVC, animated: true)
         }
     }
+    
 }
 
 extension LobbyViewController: LobbyViewDelegate {
