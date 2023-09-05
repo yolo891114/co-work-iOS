@@ -10,6 +10,8 @@ import UIKit
 
 class ProductDescriptionTableViewCell: ProductBasicCell {
 
+    @IBOutlet weak var ratingLabel: UILabel!
+    
     @IBOutlet weak var titleLbl: UILabel!
 
     @IBOutlet weak var priceLbl: UILabel!
@@ -28,5 +30,16 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
         priceLbl.text = "NT$ \(product.price)"
         idLbl.text = String(product.id)
         detailLbl.text = product.story
+        if product.reviews.count == 0 {
+            ratingLabel.text = "無評分"
+        } else {
+            let originalRating = Float(product.ratings)
+            let roundedRating = round(originalRating! * 10) / 10
+            
+            ratingLabel.text = String(format: "%.1f (%d)", roundedRating, product.reviews.count)
+
+            
+        }
+        
     }
 }

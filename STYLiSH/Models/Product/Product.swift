@@ -19,6 +19,7 @@ struct Product: Codable {
     let title: String
     let description: String
     let price: Int
+    let ratings: String
     let texture: String
     let wash: String
     let place: String
@@ -48,6 +49,7 @@ struct Product: Codable {
         case title
         case description
         case price
+        case ratings
         case texture
         case wash
         case place

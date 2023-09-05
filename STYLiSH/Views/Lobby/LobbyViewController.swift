@@ -25,6 +25,9 @@ class LobbyViewController: STBaseViewController {
     
     private let marketProvider = MarketProvider()
     
+    
+    
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,11 @@ class LobbyViewController: STBaseViewController {
         } else {
             print("B")
         }
+        
+        let magnifyButton = UIBarButtonItem(image: UIImage(systemName: "sparkle.magnifyingglass"), style: .plain, target: self, action: #selector(magnifyButtonTapped))
+        
+        navigationItem.rightBarButtonItem = magnifyButton
+        navigationItem.rightBarButtonItem?.tintColor = .darkGray
         
     }
     
@@ -56,6 +64,13 @@ class LobbyViewController: STBaseViewController {
                 LKProgressHUD.showFailure(text: "讀取資料失敗！")
             }
         })
+    }
+    
+    @objc func magnifyButtonTapped() {
+        let storyboard = UIStoryboard(name: "ChatGPTBot", bundle: nil)
+        if let chatgptVC = storyboard.instantiateViewController(identifier: "ChatGPTBotViewController") as? ChatGPTBotViewController {
+            navigationController?.pushViewController(chatgptVC, animated: true)
+        }
     }
 }
 
