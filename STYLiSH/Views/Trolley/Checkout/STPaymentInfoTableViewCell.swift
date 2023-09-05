@@ -17,7 +17,11 @@ protocol STPaymentInfoTableViewCellDelegate: AnyObject {
     func endEditing(_ cell: STPaymentInfoTableViewCell)
 }
 
+
+
 class STPaymentInfoTableViewCell: UITableViewCell {
+    
+    var startTime: Date?
 
     @IBOutlet weak var paymentTextField: UITextField! {
         didSet {
@@ -70,6 +74,22 @@ class STPaymentInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(postHoverForRegret), name: Notification.Name("Regret"), object: nil)
+
+    }
+    // 發送 regret api
+    @objc func postHoverForRegret() {
+        if let startTime = startTime {
+            let timeInterval = Date().timeIntervalSince(startTime)
+            print("時間差是：\(String(Int(timeInterval)))秒")
+            let regretDetail = EventDetailForHover(checkout: "None", regret: String(Int(timeInterval)))
+            if let uuid = SingletonVar.uuid,
+               let group = SingletonVar.group {
+               
+            let postHover = UserHover(userID: uuid, eventType: "hover", eventDetail: regretDetail, timestamp: SingletonVar.timeStamp, version: group)
+            postHoverApi(hoverType: postHover)
+        }
+      }
     }
     
     func layoutCellWith(
@@ -90,11 +110,32 @@ class STPaymentInfoTableViewCell: UITableViewCell {
     func updateCheckouttButton(isEnable: Bool) {
         checkoutBtn.isEnabled = isEnable
         checkoutBtn.backgroundColor = isEnable ? .B1 : .B5
+        
+        // 開始計時
+        if checkoutBtn.isEnabled {
+            startTime = Date()
+        }
+
     }
     
     @IBAction func checkout() {
         delegate?.checkout(self)
+        //結束計時
+        if let startTime = startTime {
+            let timeInterval = Date().timeIntervalSince(startTime)
+            print("時間差是：\(timeInterval)秒")
+            let checkoutDetail = EventDetailForHover(checkout: String(timeInterval), regret: "None")
+            
+            if let uuid = SingletonVar.uuid,
+               let group = SingletonVar.group {
+               
+            let postHover = UserHover(userID: uuid, eventType: "hover", eventDetail: checkoutDetail, timestamp: SingletonVar.timeStamp, version: group)
+            postHoverApi(hoverType: postHover)
+        }
+      }
     }
+    
+    
 }
 
 // MARK: - UIPickerViewDataSource
@@ -147,5 +188,28 @@ extension STPaymentInfoTableViewCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.endEditing(self)
+    }
+}
+
+extension STPaymentInfoTableViewCell {
+
+
+    func postHoverApi(hoverType: UserHover) {
+        if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking"){
+            var request = URLRequest(url: url)
+            // httpMethod 設定
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            // 將內容加入 httpBody
+            request.httpBody = try? JSONEncoder().encode(hoverType)
+
+            //  URLSession 本身還是必須執行，為主要上傳功能。
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print(error)
+                }
+            }.resume()
+
+        }
     }
 }

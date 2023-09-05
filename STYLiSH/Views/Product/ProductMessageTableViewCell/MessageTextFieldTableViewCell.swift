@@ -47,6 +47,7 @@ class MessageTextFieldTableViewCell: UITableViewCell {
                 
             }
         }
+        messageTextfield.text = ""
     }
     
     

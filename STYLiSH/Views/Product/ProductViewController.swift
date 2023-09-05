@@ -27,6 +27,8 @@ class ProductViewController: UIViewController {
         static let accessories = "SegueAccessories"
     }
 
+    private var typeValue = ProductType(rawValue: 0)
+    
     @IBOutlet weak var indicatorView: UIView!
 
     @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
@@ -54,6 +56,14 @@ class ProductViewController: UIViewController {
         }
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        if let type = typeValue {
+//            var provider: ProductListDataProvider?
+//            let marketProvider = MarketProvider()
+//            provider = ProductsProvider(productType: ProductsProvider.ProductType.men, dataProvider: marketProvider)
+//        }
+//    }
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +89,10 @@ class ProductViewController: UIViewController {
         moveIndicatorView(reference: sender)
         
         guard let type = ProductType(rawValue: sender.tag) else { return }
+        
         updateContainer(type: type)
+        typeValue = type
+        
     }
 
     @IBAction func onChangeLayoutType(_ sender: UIBarButtonItem) {
@@ -139,7 +152,6 @@ class ProductViewController: UIViewController {
 
     private func updateContainer(type: ProductType) {
         containerViews.forEach { $0.isHidden = true }
-        
         switch type {
         case .men:
             menProductsContainerView.isHidden = false
@@ -150,3 +162,5 @@ class ProductViewController: UIViewController {
         }
     }
 }
+
+

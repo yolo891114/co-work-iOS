@@ -15,6 +15,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         postData?.review = message
         reviewsArray.append(message)
         print(postData)
+
     }
     
     func postReviewApi() {
@@ -34,7 +35,32 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
 
         }
     }
-
+    
+   
+//
+//    func fetchDetailApi(id: Int) {
+//        let url = "http://54.66.20.75:8080/api/1.0/products/details?id=\(id)"
+//          if let url = URL(string: url){
+//              var request = URLRequest(url: url)
+//              URLSession.shared.dataTask(with: request) { data, response, error in
+//                  if let data = data,
+//                     let content = String(data: data, encoding: .utf8){
+//                      do {
+//                          let result = try JSONDecoder().decode(Product.self, from: data)
+//                          self.reviewsArray = result.reviews
+//                          DispatchQueue.main.async {
+//                              self.tableView.reloadData()
+//                          }
+//                          print(content)
+//                      } catch  {
+//                          print(error)
+//
+//                      }
+//                  }
+//
+//              }.resume()
+//          }
+//      }
     
     // 慾望清單API（收藏）
     func postCollectionApi() {
@@ -182,8 +208,6 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
         didSet {
             guard let product = product, let galleryView = galleryView else { return }
             galleryView.datas = product.images
- // ===== angus
-            tableView.reloadData()
         }
     }
     

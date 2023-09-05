@@ -143,6 +143,8 @@
 		6A49ADDC2AA46463003256E9 /* MessageTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A49ADDB2AA46463003256E9 /* MessageTextFieldTableViewCell.xib */; };
 		6A49ADE02AA48FE8003256E9 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADDF2AA48FE8003256E9 /* Review.swift */; };
 		6A49ADE22AA5720A003256E9 /* SingletonVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADE12AA5720A003256E9 /* SingletonVar.swift */; };
+		6A49ADEA2AA70708003256E9 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADE92AA70708003256E9 /* PhotoViewController.swift */; };
+		6A49ADEC2AA708CC003256E9 /* PhotoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A49ADEB2AA708CC003256E9 /* PhotoViewController.storyboard */; };
 		D306B883B370DFD3ED8ACD74 /* Pods_STYLiSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C2B4AF3EF2ABFF2BB9F7AB /* Pods_STYLiSH.framework */; };
 /* End PBXBuildFile section */
 
@@ -297,6 +299,8 @@
 		6A49ADDB2AA46463003256E9 /* MessageTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		6A49ADDF2AA48FE8003256E9 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		6A49ADE12AA5720A003256E9 /* SingletonVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonVar.swift; sourceTree = "<group>"; };
+		6A49ADE92AA70708003256E9 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		6A49ADEB2AA708CC003256E9 /* PhotoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoViewController.storyboard; sourceTree = "<group>"; };
 		E921004E251C9FC3CBC174F5 /* Pods-STYLiSH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.release.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.release.xcconfig"; sourceTree = "<group>"; };
 		F551E8F447D7C8DC42B53B98 /* Pods-STYLiSH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STYLiSH.debug.xcconfig"; path = "Target Support Files/Pods-STYLiSH/Pods-STYLiSH.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -536,6 +540,7 @@
 				3CC7061C2216B37100CAD850 /* ProductTableViewCell */,
 				3C990F6B22E5C78200F2FCEA /* ProductDetailView.swift */,
 				6A49ADD22AA43C01003256E9 /* ProductMessageTableViewCell */,
+				6A49ADE82AA706E0003256E9 /* PhotoView */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -814,6 +819,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6A49ADE82AA706E0003256E9 /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				6A49ADE92AA70708003256E9 /* PhotoViewController.swift */,
+				6A49ADEB2AA708CC003256E9 /* PhotoViewController.storyboard */,
+			);
+			path = PhotoView;
+			sourceTree = "<group>";
+		};
 		F26A8A19BFED7C956C38BFE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +922,7 @@
 				6A49ADD12AA3059F003256E9 /* LikeList.storyboard in Resources */,
 				3C831C6122E9945500112298 /* STOrderProductCell.xib in Resources */,
 				54C923C22AA4E016009DD74B /* HistoryOrderTableView.storyboard in Resources */,
+				6A49ADEC2AA708CC003256E9 /* PhotoViewController.storyboard in Resources */,
 				3C4B10D522292732009942B7 /* card_unknown@2x.png in Resources */,
 				3C4B10CF22292732009942B7 /* card_visa.png in Resources */,
 				3CED808C2301138800B7DA8E /* Localizable.strings in Resources */,
@@ -1024,6 +1039,7 @@
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
 				6A49ADE22AA5720A003256E9 /* SingletonVar.swift in Sources */,
+				6A49ADEA2AA70708003256E9 /* PhotoViewController.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
 				3C990F6C22E5C78200F2FCEA /* ProductDetailView.swift in Sources */,
 				3C546BE722EAC79D0082C655 /* STOrderHeaderView.swift in Sources */,
