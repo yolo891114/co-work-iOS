@@ -95,7 +95,6 @@ extension ChatGPTBotViewController {
             URLSession.shared.dataTask(with: request) { data, response, error in
                 LKProgressHUD.dismiss()
                 if let data = data {
-                    // 這行將數據轉換為字符串並打印，以便您也可以看到原始字符串
                     let content = String(data: data, encoding: .utf8)
                     print("Raw Data Received:")
                     print(content ?? "No data")
