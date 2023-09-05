@@ -301,8 +301,12 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     
     // MARK: - Action
     @IBAction func didTouchAddToCarBtn(_ sender: UIButton) {
+        
+        
+        
         if productPickerView.superview == nil {
             showProductPickerView()
+            
         } else {
             guard
                 let color = pickerViewController?.selectedColor,
@@ -324,6 +328,7 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
                     }
                 }
             )
+            postAddToCartApi(productID: "\(product.id)")
         }
     }
     
@@ -467,6 +472,36 @@ extension ProductDetailViewController {
      
                  //  URLSession 本身還是必須執行，為主要上傳功能。
                  URLSession.shared.dataTask(with: request) { data, response, error in
+                 }.resume()
+     
+             }
+    }
+    
+    func postAddToCartApi(productID: String) {
+        
+        let userAddToCart = UserViewItemAndAddToCart(userID: SingletonVar.uuid!, eventType: "add_to_cart", eventDetail: productID, timestamp: SingletonVar.timeStamp, version: SingletonVar.group!)
+        
+             if let url = URL(string: "http://54.66.20.75:8080/api/1.0/user/tracking"){
+                 var request = URLRequest(url: url)
+                 // httpMethod 設定
+                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                 request.httpMethod = "POST"
+                 // 將內容加入 httpBody
+                 request.httpBody = try? JSONEncoder().encode(userAddToCart)
+     
+                 //  URLSession 本身還是必須執行，為主要上傳功能。
+                 URLSession.shared.dataTask(with: request) { data, response, error in
+                     if let data = data,
+                        let content = String(data: data, encoding: .utf8) {
+                         print("Add to cart API:\(content)")
+                     }
+                     if let httpResponse = response as? HTTPURLResponse {
+                         print("HTTP Status Code: \(httpResponse.statusCode)")
+                     }
+                     if let error = error {
+                         print("Error when post add to cart API:\(error)")
+                         
+                     }
                  }.resume()
      
              }

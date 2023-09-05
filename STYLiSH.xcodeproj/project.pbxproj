@@ -134,6 +134,11 @@
 		54C923CD2AA57576009DD74B /* UserCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923CC2AA57576009DD74B /* UserCollect.swift */; };
 		54C923CF2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923CE2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift */; };
 		54C923D32AA5C386009DD74B /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923D22AA5C386009DD74B /* OrderModel.swift */; };
+		54C923D62AA6BA56009DD74B /* ChatGPTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923D52AA6BA56009DD74B /* ChatGPTModel.swift */; };
+		54C923D92AA6BED1009DD74B /* ChatGPTBot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C923D82AA6BED1009DD74B /* ChatGPTBot.storyboard */; };
+		54C923DB2AA6BEE4009DD74B /* ChatGPTBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923DA2AA6BEE4009DD74B /* ChatGPTBotViewController.swift */; };
+		54C923DF2AA6C107009DD74B /* ChatGPTBotClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923DE2AA6C107009DD74B /* ChatGPTBotClientCell.swift */; };
+		54C923E12AA6C127009DD74B /* ChatGPTBotServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C923E02AA6C127009DD74B /* ChatGPTBotServerCell.swift */; };
 		58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */; };
 		6A49ADCB2AA2F12B003256E9 /* LikeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADCA2AA2F12B003256E9 /* LikeListViewController.swift */; };
 		6A49ADCD2AA302DF003256E9 /* LikeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49ADCC2AA302DF003256E9 /* LikeListTableViewCell.swift */; };
@@ -291,6 +296,11 @@
 		54C923CC2AA57576009DD74B /* UserCollect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollect.swift; sourceTree = "<group>"; };
 		54C923CE2AA57CC5009DD74B /* HistoryOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderTableViewCell.swift; sourceTree = "<group>"; };
 		54C923D22AA5C386009DD74B /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		54C923D52AA6BA56009DD74B /* ChatGPTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTModel.swift; sourceTree = "<group>"; };
+		54C923D82AA6BED1009DD74B /* ChatGPTBot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatGPTBot.storyboard; sourceTree = "<group>"; };
+		54C923DA2AA6BEE4009DD74B /* ChatGPTBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTBotViewController.swift; sourceTree = "<group>"; };
+		54C923DE2AA6C107009DD74B /* ChatGPTBotClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTBotClientCell.swift; sourceTree = "<group>"; };
+		54C923E02AA6C127009DD74B /* ChatGPTBotServerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTBotServerCell.swift; sourceTree = "<group>"; };
 		58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LSColor+Extension.swift"; sourceTree = "<group>"; };
 		6A49ADCA2AA2F12B003256E9 /* LikeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListViewController.swift; sourceTree = "<group>"; };
 		6A49ADCC2AA302DF003256E9 /* LikeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListTableViewCell.swift; sourceTree = "<group>"; };
@@ -355,6 +365,7 @@
 		3C0DD87B2213531400F5237E /* Lobby */ = {
 			isa = PBXGroup;
 			children = (
+				54C923D72AA6BEB3009DD74B /* ChatGPTBot */,
 				3C0DD875221348E900F5237E /* LobbyViewController.swift */,
 				3C0DD87C2213533F00F5237E /* LobbyTableViewCell.swift */,
 				3C8F191A22E5BA9F00EECE90 /* LobbyView.swift */,
@@ -623,6 +634,7 @@
 		3CD2913022113CF3008B8A2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				54C923D42AA6BA45009DD74B /* ChatGPT */,
 				54C923D12AA5C374009DD74B /* HistoryOrder */,
 				54C923C32AA570D4009DD74B /* UserTracking */,
 				3CE7A51A2230899D009FF003 /* OrderProvider */,
@@ -751,6 +763,25 @@
 				54C923D22AA5C386009DD74B /* OrderModel.swift */,
 			);
 			path = HistoryOrder;
+			sourceTree = "<group>";
+		};
+		54C923D42AA6BA45009DD74B /* ChatGPT */ = {
+			isa = PBXGroup;
+			children = (
+				54C923D52AA6BA56009DD74B /* ChatGPTModel.swift */,
+			);
+			path = ChatGPT;
+			sourceTree = "<group>";
+		};
+		54C923D72AA6BEB3009DD74B /* ChatGPTBot */ = {
+			isa = PBXGroup;
+			children = (
+				54C923D82AA6BED1009DD74B /* ChatGPTBot.storyboard */,
+				54C923DA2AA6BEE4009DD74B /* ChatGPTBotViewController.swift */,
+				54C923DE2AA6C107009DD74B /* ChatGPTBotClientCell.swift */,
+				54C923E02AA6C127009DD74B /* ChatGPTBotServerCell.swift */,
+			);
+			path = ChatGPTBot;
 			sourceTree = "<group>";
 		};
 		5AE6F61E29E3F94A003764C6 /* Auth */ = {
@@ -927,6 +958,7 @@
 				3C4B10D722292732009942B7 /* card_unknown.png in Resources */,
 				3C4B10D822292732009942B7 /* card_mastercard@3x.png in Resources */,
 				3CD29124221135E3008B8A2D /* Assets.xcassets in Resources */,
+				54C923D92AA6BED1009DD74B /* ChatGPTBot.storyboard in Resources */,
 				3C4B10D222292732009942B7 /* card_unknown@3x.png in Resources */,
 				3CD29122221135E2008B8A2D /* Main.storyboard in Resources */,
 				3CC706172216B34800CAD850 /* ProductTableViewCell.xib in Resources */,
@@ -1041,6 +1073,7 @@
 				3C546BE522EABB6D0082C655 /* CheckoutViewController.swift in Sources */,
 				3CD2911D221135E2008B8A2D /* AppDelegate.swift in Sources */,
 				3CEBE07A222F72600064EF82 /* STYLiSH.xcdatamodeld in Sources */,
+				54C923DB2AA6BEE4009DD74B /* ChatGPTBotViewController.swift in Sources */,
 				3CDC5A66222D85990071D0D1 /* ColorSelectionCell.swift in Sources */,
 				3C6020D8222B883600312958 /* ProductDescriptionTableViewCell.swift in Sources */,
 				54C923CD2AA57576009DD74B /* UserCollect.swift in Sources */,
@@ -1048,10 +1081,12 @@
 				6A49ADD82AA46410003256E9 /* MessageTextFieldTableViewCell.swift in Sources */,
 				3C33691F2227DC7B008A5A7A /* TrolleySelectionView.swift in Sources */,
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
+				54C923D62AA6BA56009DD74B /* ChatGPTModel.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
 				6A49ADE22AA5720A003256E9 /* SingletonVar.swift in Sources */,
 				6A49ADEA2AA70708003256E9 /* PhotoViewController.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
+				54C923E12AA6C127009DD74B /* ChatGPTBotServerCell.swift in Sources */,
 				3C990F6C22E5C78200F2FCEA /* ProductDetailView.swift in Sources */,
 				3C546BE722EAC79D0082C655 /* STOrderHeaderView.swift in Sources */,
 				3C5DD7CC2227EFFF0053B67A /* TrolleyViewController.swift in Sources */,
@@ -1115,6 +1150,7 @@
 				3C33863F221BB2B800ED97E4 /* ProductListViewController.swift in Sources */,
 				3C6020E6222BB03400312958 /* STBaseViewController.swift in Sources */,
 				3CEBE07E222F979F0064EF82 /* JGProgressHUDWrapper.swift in Sources */,
+				54C923DF2AA6C107009DD74B /* ChatGPTBotClientCell.swift in Sources */,
 				3CCB3BC6222AAC8300976A1C /* LKGalleryView.swift in Sources */,
 				54C923C92AA574B4009DD74B /* UserCheckOut.swift in Sources */,
 				3C9C0D552215443900595689 /* ProfileManager.swift in Sources */,
