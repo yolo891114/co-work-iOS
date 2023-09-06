@@ -94,6 +94,7 @@ extension ChatGPTBotViewController: UITableViewDelegate, UITableViewDataSource {
             case .image(let image):
                 clientCell.requestLabel.text = nil
                 clientCell.chatImage.image = image
+                clientCell.imageHeightConstraint.constant = 250
             }
             return clientCell
         } else {
