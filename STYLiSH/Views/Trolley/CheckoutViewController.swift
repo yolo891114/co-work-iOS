@@ -65,6 +65,15 @@ class CheckoutViewController: STBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UserDefaults.standard.string(forKey: "userGroup") == "A" {
+            addBannerView()
+            print("A")
+        } else {
+            print("B")
+            addBannerView()
+        }
+        
     }
     
     private func setupTableView() {

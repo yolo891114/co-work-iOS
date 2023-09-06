@@ -54,7 +54,6 @@ class TrolleyViewController: STBaseViewController {
             print("A")
         } else {
             print("B")
-            addBannerView()
         }
     }
 

@@ -79,7 +79,7 @@
                                     <constraint firstItem="1eR-Hs-xOd" firstAttribute="centerY" secondItem="HfD-ke-bKw" secondAttribute="centerY" id="xPZ-B7-CSK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-bF-jk5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-bF-jk5">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -99,8 +99,8 @@
                                                             <color key="textColor" name="B6"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmm-8P-z3d">
-                                                            <rect key="frame" x="16" y="8" width="225" height="300"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmm-8P-z3d">
+                                                            <rect key="frame" x="8" y="8" width="241" height="300"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="300" id="fe0-6W-f1s"/>
                                                             </constraints>
@@ -114,9 +114,9 @@
                                                         <constraint firstItem="1xJ-Ft-a0q" firstAttribute="top" secondItem="a8J-w9-0hw" secondAttribute="top" constant="8" id="SEx-zc-0qX"/>
                                                         <constraint firstItem="1xJ-Ft-a0q" firstAttribute="leading" secondItem="a8J-w9-0hw" secondAttribute="leading" constant="16" id="WTn-8U-QiU"/>
                                                         <constraint firstItem="mmm-8P-z3d" firstAttribute="top" secondItem="a8J-w9-0hw" secondAttribute="top" constant="8" id="X3I-lR-rEZ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="mmm-8P-z3d" secondAttribute="trailing" constant="16" id="cai-Yt-lzD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="mmm-8P-z3d" secondAttribute="trailing" constant="8" id="cai-Yt-lzD"/>
                                                         <constraint firstAttribute="bottom" secondItem="1xJ-Ft-a0q" secondAttribute="bottom" constant="8" id="lEe-nd-ci1"/>
-                                                        <constraint firstItem="mmm-8P-z3d" firstAttribute="leading" secondItem="a8J-w9-0hw" secondAttribute="leading" constant="16" id="yR6-ul-zM3"/>
+                                                        <constraint firstItem="mmm-8P-z3d" firstAttribute="leading" secondItem="a8J-w9-0hw" secondAttribute="leading" constant="8" id="yR6-ul-zM3"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">

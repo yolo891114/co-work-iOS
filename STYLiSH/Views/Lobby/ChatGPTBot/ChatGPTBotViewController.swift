@@ -20,11 +20,12 @@ class ChatGPTBotViewController: UIViewController {
     @IBOutlet weak var cameraButton: UIButton!
     
     @IBAction func cameraButtonTapped(_ sender: UIButton) {
-        
+        LKProgressHUD.show()
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+        LKProgressHUD.dismiss()
         
     }
     
@@ -94,7 +95,7 @@ extension ChatGPTBotViewController: UITableViewDelegate, UITableViewDataSource {
             case .image(let image):
                 clientCell.requestLabel.text = nil
                 clientCell.chatImage.image = image
-                clientCell.imageHeightConstraint.constant = 250
+                clientCell.imageHeightConstraint.constant = 300
             }
             return clientCell
         } else {
@@ -224,6 +225,7 @@ extension ChatGPTBotViewController: UIImagePickerControllerDelegate,UINavigation
                         self.messages.append(.text(chatResponse.chatResponse))
                         let newIndexPath = IndexPath(row: self.messages.count - 1, section: 0)
                         self.chatTableView.insertRows(at: [newIndexPath], with: .automatic) // 插入新的 cell
+                        self.chatTableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
                     }
                     
                     print("Chat Response: \(chatResponse.chatResponse)")
