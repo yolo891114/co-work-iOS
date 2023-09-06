@@ -28,6 +28,22 @@ class ProductListViewController: STCompondViewController {
         setupCollectionView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        paging = nil
+        datas = []
+        resetNoMoreData()
+
+        provider?.fetchData(paging: 0, completion: { [weak self] result in
+            self?.endHeaderRefreshing()
+            switch result {
+            case .success(let response):
+                self?.datas = [response.data]
+                self?.paging = response.paging
+            case .failure(let error):
+                LKProgressHUD.showFailure(text: error.localizedDescription)
+            }
+        })
+    }
     // MARK: - Private method
     private func setupTableView() {
         tableView.separatorStyle = .none

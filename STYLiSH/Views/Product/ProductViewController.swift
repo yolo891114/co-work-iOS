@@ -55,15 +55,7 @@ class ProductViewController: UIViewController {
             }
         }
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        if let type = typeValue {
-//            var provider: ProductListDataProvider?
-//            let marketProvider = MarketProvider()
-//            provider = ProductsProvider(productType: ProductsProvider.ProductType.men, dataProvider: marketProvider)
-//        }
-//    }
-
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +153,7 @@ class ProductViewController: UIViewController {
             accessoriesProductsContainerView.isHidden = false
         }
     }
+    
 }
 
 
