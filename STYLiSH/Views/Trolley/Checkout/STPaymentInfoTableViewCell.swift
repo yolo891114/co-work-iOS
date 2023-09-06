@@ -123,8 +123,8 @@ class STPaymentInfoTableViewCell: UITableViewCell {
         //結束計時
         if let startTime = startTime {
             let timeInterval = Date().timeIntervalSince(startTime)
-            print("時間差是：\(timeInterval)秒")
-            let checkoutDetail = EventDetailForHover(checkout: String(timeInterval), regret: "None")
+            print("時間差是：\(String(Int(timeInterval)))秒")
+            let checkoutDetail = EventDetailForHover(checkout: String(Int(timeInterval)), regret: "None")
             
             if let uuid = SingletonVar.uuid,
                let group = SingletonVar.group {
