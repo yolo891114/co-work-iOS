@@ -106,13 +106,13 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
     private let likeButton: UIButton = {
         let button = UIButton()
         if UserDefaults.standard.string(forKey: "userGroup") == "A" {
-            button.setImage(UIImage(systemName: "heart"), for: .normal)
-            button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-            button.tintColor = .systemPink
-        } else {
             button.setImage(UIImage(systemName: "star"), for: .normal)
             button.setImage(UIImage(systemName: "star.fill"), for: .selected)
             button.tintColor = .systemYellow
+        } else {
+            button.setImage(UIImage(systemName: "heart"), for: .normal)
+            button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            button.tintColor = .systemPink
         }
         
         button.addTarget(self, action: #selector(tappedLike), for: .touchUpInside)
@@ -394,16 +394,13 @@ class ProductDetailViewController: STBaseViewController,MessageDelegate {
                 
                 cell.delegate = self
                 
-                
                 return cell
                 
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductMessageTableViewCell", for: indexPath) as? ProductMessageTableViewCell else { return UITableViewCell() }
                 
                 cell.messgeLabel.text = reviewsArray[indexPath.row]
-
-
-                
+           
                 return cell
             }
         }
